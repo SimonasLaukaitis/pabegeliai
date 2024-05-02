@@ -18,8 +18,8 @@ function wec_register_styles()
     wp_enqueue_style(
         'wec-main',
         plugin_dir_url(__FILE__) . 'assets/css/styles.css',
-        array('slick-theme', 'slick', 'euhor-main'),
-        '1.2',
+        array('pc-main'),
+        '1.0',
         'all'
     );
 
@@ -27,8 +27,8 @@ function wec_register_styles()
     wp_enqueue_style(
         'wec-single-template',
         get_template_directory_uri() . '/assets/css/custom-event-template.css',
-        array('euhor-main'),
-        '1.2',
+        array('pc-main'),
+        '1.0',
         'all'
     );
 

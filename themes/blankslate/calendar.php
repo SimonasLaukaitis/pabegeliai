@@ -55,16 +55,26 @@ $renginiai_query = new WP_Query($args);
 
 ?>
 <main class="container">
-    
-    <!-- Posts desktop -->
-    <div class="events-calendar-posts" id="events-calendar-posts">
-        <?php showPosts(); ?>
-    </div>
 
-    <!-- Calendar -->
-    <div class="events-calendar-calendar" id="events-calendar-calendar">
-        <?php showCalendar(); ?>
-    </div>
+    <section>
+
+        <div class="events-calendar-plugin">
+
+            <!-- Posts desktop -->
+            <div class="events-calendar-posts" id="events-calendar-posts">
+                <?php showPosts(); ?>
+            </div>
+
+
+            <!-- Calendar -->
+            <div class="events-calendar-calendar" id="events-calendar-calendar">
+                <?php showCalendar(); ?>
+            </div>
+
+        </div>
+
+    </section>
+    
 </main>
 
 <?php get_footer() ?>
