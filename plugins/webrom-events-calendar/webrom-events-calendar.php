@@ -42,7 +42,7 @@ function wec_register_scripts()
     wp_enqueue_script(
         'wec-main',
         plugin_dir_url(__FILE__) . 'assets/js/main.js',
-        array('jquery', 'slick-min'),
+        array('jquery'),
         '1.0',
         true
     );
