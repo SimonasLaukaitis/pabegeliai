@@ -55,48 +55,16 @@ $renginiai_query = new WP_Query($args);
 
 ?>
 <main class="container">
-    <section class="events-section">
-        <?php
-        if ($renginiai_query->have_posts()) {
+    
+    <!-- Posts desktop -->
+    <div class="events-calendar-posts" id="events-calendar-posts">
+        <?php showPosts(); ?>
+    </div>
 
-            while ($renginiai_query->have_posts()) {
-                $renginiai_query->the_post();
-
-                $event_title = get_the_title();
-                $event_date = get_post_meta(get_the_ID(), 'event_date', true);
-                $event_time = get_post_meta(get_the_ID(), 'event_time', true);
-                $event_location = get_post_meta(get_the_ID(), 'event_location', true);
-
-                echo '<div class="event-box">';
-
-                if (has_post_thumbnail()) {
-                    echo '<div class="renginiai-thumbnail">';
-                    the_post_thumbnail('medium'); // You can specify a thumbnail size instead of 'full'
-                    echo '</div>';
-                }
-
-                if (!empty($event_title)) {
-                    echo '<p>' . esc_html($event_title) . '</p>';
-                }
-                if (!empty($event_date)) {
-                    echo '<p>' . esc_html($event_date) . '</p>';
-                }
-                if (!empty($event_time)) {
-                    echo '<p>' . esc_html($event_time) . '</p>';
-                }
-                if (!empty($event_location)) {
-                    echo '<p>' . esc_html($event_location) . '</p>';
-                }
-
-                echo '</div>';
-            }
-        }
-
-        // Restore original Post Data
-        wp_reset_postdata();
-        ?>
-    </section>
-    <section class="calendar-section"></section>
+    <!-- Calendar -->
+    <div class="events-calendar-calendar" id="events-calendar-calendar">
+        <?php showCalendar(); ?>
+    </div>
 </main>
 
 <?php get_footer() ?>
