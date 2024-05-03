@@ -527,7 +527,7 @@ function renderPosts($ajax_date = '')
             $event_day = date('d', strtotime($event_date));
 
             // Extract the month
-            $event_month = date('M', strtotime($event_date));
+            $event_month = date_i18n('F', strtotime($event_date));
 
             $event_time = get_post_meta(get_the_ID(), 'webrom_event_registration_link', true);
             $event_dates[] = date('j', strtotime($event_date));
