@@ -573,18 +573,14 @@ function renderPosts($ajax_date = '')
 
             echo '</div>';
 
-            //Reight section
-            echo '<div>';
+            //Right section
 
             echo '<div class="events-date">';
-
             echo '<div class="caption3">' . $event_day . '</div>';
             echo '<div class="caption3">' . $event_month . '</div>';
             echo '</div>';
 
-
-            echo '</div>';
-
+            //Closing box
             echo '</div>';
         }
         wp_reset_postdata();

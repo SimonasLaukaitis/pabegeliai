@@ -10,8 +10,7 @@
   margin-left: auto;
 }
 
-
-.events-calendar-calendar{
+.events-calendar-calendar {
   box-shadow: 0px 3px 6px #00000042;
 }
 
@@ -37,7 +36,6 @@
   margin-bottom: 12px;
   padding: 0;
   display: flex;
-  justify-content: space-between;
 }
 
 .events-price,
@@ -46,6 +44,21 @@
   margin-bottom: 20px;
   display: flex;
   flex-wrap: nowrap;
+}
+
+.events-date {
+  margin-left: auto;
+  margin-right: 0;
+  margin-top: 19px;
+  margin-right: 17px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.events-time-cont{
+  display: flex;
+  
 }
 
 .events-header {
@@ -76,7 +89,7 @@
   height: 100%;
   /* max-width: 512px;
   max-height: 182px; */
- 
+
   object-fit: cover;
 }
 
@@ -138,7 +151,7 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  font-family: 'GT Walsheim Pro';
+  font-family: "GT Walsheim Pro";
   font-size: 14px;
   line-height: 16px;
 }
@@ -274,14 +287,14 @@
 }
 
 .previous-btn {
-  background-image: url('/wp-content/plugins/webrom-events-calendar/assets/icons/pagination-left.svg');
+  background-image: url("/wp-content/plugins/webrom-events-calendar/assets/icons/pagination-left.svg");
   background-repeat: no-repeat;
   background-position: center center;
   color: transparent !important;
 }
 
 .next-btn {
-  background-image: url('/wp-content/plugins/webrom-events-calendar/assets/icons/pagination-right.svg');
+  background-image: url("/wp-content/plugins/webrom-events-calendar/assets/icons/pagination-right.svg");
   background-repeat: no-repeat;
   background-position: center center;
   color: transparent !important;
@@ -308,6 +321,11 @@
 .mobile-event-box {
   width: 390px;
   margin: 0 10px;
+}
+
+.middle-section {
+  margin-left: 16px;
+  margin-right: 16px;
 }
 
 /** ---------Media screens--------- */
@@ -448,5 +466,3 @@
     max-width: 390px;
   }
 }
-
-
