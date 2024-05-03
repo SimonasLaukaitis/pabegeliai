@@ -85,47 +85,47 @@
     });
   }
 
+  // switch months
   function monthswich(direction) {
     var currentMonthDiv = document.querySelector(".current-month");
 
     if (direction == "right") {
       var nextDiv = currentMonthDiv.nextElementSibling;
       if (nextDiv) {
-          // Remove the current-month class from the current div
-          currentMonthDiv.classList.add("month-hide");
-          currentMonthDiv.classList.remove("current-month");
-     
-          // Add the current-month class to the next div
-          nextDiv.classList.remove("month-hide");
-          nextDiv.classList.add("current-month");
+        // Remove the current-month class from the current div
+        currentMonthDiv.classList.add("month-hide");
+        currentMonthDiv.classList.remove("current-month");
+
+        // Add the current-month class to the next div
+        nextDiv.classList.remove("month-hide");
+        nextDiv.classList.add("current-month");
       } else {
-          // If there's no next div, we're at the last month, so go to the first
-          var firstDiv = currentMonthDiv.parentNode.firstElementChild;
-          currentMonthDiv.classList.add("month-hide");
-          currentMonthDiv.classList.remove("current-month");
-          firstDiv.classList.remove("month-hide");
-          firstDiv.classList.add("current-month");
+        // If there's no next div, we're at the last month, so go to the first
+        var firstDiv = currentMonthDiv.parentNode.firstElementChild;
+        currentMonthDiv.classList.add("month-hide");
+        currentMonthDiv.classList.remove("current-month");
+        firstDiv.classList.remove("month-hide");
+        firstDiv.classList.add("current-month");
       }
-  } else if (direction == "left") {
+    } else if (direction == "left") {
       var prevDiv = currentMonthDiv.previousElementSibling;
       if (prevDiv) {
-          // Remove the current-month class from the current div
-          currentMonthDiv.classList.add("month-hide");
-          currentMonthDiv.classList.remove("current-month");
-     
-          // Add the current-month class to the previous div
-          prevDiv.classList.remove("month-hide");
-          prevDiv.classList.add("current-month");
+        // Remove the current-month class from the current div
+        currentMonthDiv.classList.add("month-hide");
+        currentMonthDiv.classList.remove("current-month");
+
+        // Add the current-month class to the previous div
+        prevDiv.classList.remove("month-hide");
+        prevDiv.classList.add("current-month");
       } else {
-          // If there's no previous div, we're at the first month, so go to the last
-          var lastDiv = currentMonthDiv.parentNode.lastElementChild;
-          currentMonthDiv.classList.add("month-hide");
-          currentMonthDiv.classList.remove("current-month");
-          lastDiv.classList.remove("month-hide");
-          lastDiv.classList.add("current-month");
+        // If there's no previous div, we're at the first month, so go to the last
+        var lastDiv = currentMonthDiv.parentNode.lastElementChild;
+        currentMonthDiv.classList.add("month-hide");
+        currentMonthDiv.classList.remove("current-month");
+        lastDiv.classList.remove("month-hide");
+        lastDiv.classList.add("current-month");
       }
-  }
-  
+    }
   }
 
   /** Changing year and month ajax function*/
