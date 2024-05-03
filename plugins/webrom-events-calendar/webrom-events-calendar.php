@@ -31,7 +31,6 @@ function wec_register_styles()
         '1.0',
         'all'
     );
-
 }
 add_action('wp_enqueue_scripts', 'wec_register_styles');
 
@@ -83,7 +82,7 @@ function webrom_event_calendar_add_meta_fields()
 
     add_meta_box('webrom_event_date', 'Event Date', 'webrom_event_calendar_render_date_field', 'webrom_events', 'normal', 'high');
     add_meta_box('webrom_event_location', 'Event Location', 'webrom_event_calendar_render_location_field', 'webrom_events', 'normal', 'high');
-    add_meta_box('webrom_event_registration_link', 'Event registration link', 'webrom_registration_link_field', 'webrom_events', 'normal', 'high');
+    add_meta_box('webrom_event_registration_link', 'Event time', 'webrom_registration_link_field', 'webrom_events', 'normal', 'high');
 }
 add_action('add_meta_boxes', 'webrom_event_calendar_add_meta_fields');
 
@@ -98,7 +97,7 @@ function webrom_event_calendar_render_date_field($post)
     if (empty($event_date)) {
         $event_date = $today;
     }
-    ?>
+?>
     <input type="date" name="webrom_event_date" id="webrom_event_date" value="<?php echo esc_attr($event_date); ?>" required>
 <?php
 }
@@ -107,7 +106,7 @@ function webrom_event_calendar_render_date_field($post)
 function webrom_event_calendar_render_location_field($post)
 {
     $event_location = get_post_meta($post->ID, 'webrom_event_location', true);
-    ?>
+?>
     <input type="text" name="webrom_event_location" id="webrom_event_location" value="<?php echo esc_attr($event_location); ?>" required>
 <?php
 }
@@ -116,8 +115,8 @@ function webrom_event_calendar_render_location_field($post)
 function webrom_registration_link_field($post)
 {
     $event_link = get_post_meta($post->ID, 'webrom_event_registration_link', true);
-    ?>
-    <input type="text" name="webrom_event_registration_link" id="webrom_event_registration_link" placeholder="https://…" value="<?php echo esc_attr($event_link); ?>" required>
+?>
+    <input type="text" name="webrom_event_registration_link" id="webrom_event_registration_link" placeholder="00:00" value="<?php echo esc_attr($event_link); ?>" required>
 <?php
 }
 
@@ -516,11 +515,23 @@ function renderPosts($ajax_date = '')
     // variable for post id number
     $post_number = 0;
 
+
+
     if ($query->have_posts()) {
         while ($query->have_posts()) {
             $query->the_post();
 
             $post_number++;
+            $event_date = get_post_meta(get_the_ID(), 'webrom_event_date', true);
+            // Extract the day
+            $event_day = date('d', strtotime($event_date));
+
+            // Extract the month
+            $event_month = date('M', strtotime($event_date));
+
+            $event_time = get_post_meta(get_the_ID(), 'webrom_event_registration_link', true);
+            $event_dates[] = date('j', strtotime($event_date));
+            $event_location = get_post_meta(get_the_ID(), 'webrom_event_location', true);
 
             $image_url = '/wp-content/plugins/webrom-events-calendar/assets/img/placeholder_600_400.png';
 
@@ -530,29 +541,49 @@ function renderPosts($ajax_date = '')
                 $image_url = $thumbnail_url[0];
             }
 
+            //Left section
             echo '<div class="featured-image">';
             echo '<img src="' . $image_url . '" alt="' . get_the_title() . '">';
             echo '</div>';
 
+            //Middle section
+            echo '<div class="middle-section">';
+
+            //Event title
             echo '<div  class="events-header subtitle3"><a href="' . get_permalink() . '" aria-label="' . get_the_title() . '">' . get_the_title() . '</a></div>';
 
-            $event_date = get_post_meta(get_the_ID(), 'webrom_event_date', true);
-            $event_dates[] = date('j', strtotime($event_date));
 
-            echo '<div class="events-date">';
-            echo '<div class="events-date-icon"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/date.svg"></div>';
-            echo '<div class="caption3">' . $event_date . '</div>';
+            //Event time
+            echo '<div class="events-time-cont">';
+            echo '<div class="events-time-icon"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/location.svg"></div>';
+            echo '<div class="caption3">' . $event_time . '</div>';
             echo '</div>';
 
-            $event_location = get_post_meta(get_the_ID(), 'webrom_event_location', true);
+
 
             // Check if location exists
             if ($event_location !== '') {
+
+                // Event location
                 echo '<div class="events-location">';
                 echo '<div class="events-location-icon"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/location.svg"></div>';
                 echo '<div class="caption3">' . $event_location . '</div>';
                 echo '</div>';
             }
+
+            echo '</div>';
+
+            //Reight section
+            echo '<div>';
+
+            echo '<div class="events-date">';
+
+            echo '<div class="caption3">' . $event_day . '</div>';
+            echo '<div class="caption3">' . $event_month . '</div>';
+            echo '</div>';
+
+
+            echo '</div>';
 
             echo '</div>';
         }

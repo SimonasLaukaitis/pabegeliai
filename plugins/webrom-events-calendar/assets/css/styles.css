@@ -2,6 +2,7 @@
   display: inline-flex;
   flex-wrap: nowrap;
   width: 100%;
+  gap: 37px;
 }
 
 .events-calendar-posts,
@@ -9,10 +10,15 @@
   margin-left: auto;
 }
 
+
+.events-calendar-calendar{
+  box-shadow: 0px 3px 6px #00000042;
+}
+
 .events-calendar-posts,
 .events-calendar-posts-All {
-  display: inline-flex;
-  flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
   column-gap: 40px;
   width: 100%;
   max-width: 1260px;
@@ -25,11 +31,13 @@
 }
 
 .event-box {
-  flex: 1 1 350px;
+  box-shadow: 0px 3px 6px #00000042;
   width: 100%;
-  max-width: 512px;
-  margin-bottom: 26px;
+  max-width: 670px;
+  margin-bottom: 12px;
   padding: 0;
+  display: flex;
+  justify-content: space-between;
 }
 
 .events-price,
@@ -59,14 +67,16 @@
 
 .featured-image {
   overflow: hidden;
+  height: 165px;
+  width: 254px;
 }
 
 .featured-image img {
   width: 100%;
   height: 100%;
-  max-width: 512px;
-  max-height: 182px;
-  border-radius: 15px;
+  /* max-width: 512px;
+  max-height: 182px; */
+ 
   object-fit: cover;
 }
 
