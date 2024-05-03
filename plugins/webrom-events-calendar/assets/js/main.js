@@ -88,6 +88,9 @@
   // switch months
   function monthswich(direction) {
     var currentMonthDiv = document.querySelector(".current-month");
+    var currentYear = parseInt(
+      document.querySelector(".calendar-year").innerHTML
+    );
 
     if (direction == "right") {
       var nextDiv = currentMonthDiv.nextElementSibling;
@@ -106,6 +109,11 @@
         currentMonthDiv.classList.remove("current-month");
         firstDiv.classList.remove("month-hide");
         firstDiv.classList.add("current-month");
+
+        //years counting
+        currentYear++;
+        console.log(currentYear);
+        document.querySelector(".calendar-year").innerHTML = currentYear;
       }
     } else if (direction == "left") {
       var prevDiv = currentMonthDiv.previousElementSibling;
@@ -124,6 +132,10 @@
         currentMonthDiv.classList.remove("current-month");
         lastDiv.classList.remove("month-hide");
         lastDiv.classList.add("current-month");
+
+        //years counting
+        currentYear--;
+        document.querySelector(".calendar-year").innerHTML = currentYear;
       }
     }
   }

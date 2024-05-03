@@ -223,6 +223,10 @@ function renderCalendar($ajax_month, $ajax_year)
     // }
     // echo '</select>';
 
+    echo '<div aria-label="pasirinkti metus" class="calendar-year button3" id="calendar-year">';
+    echo $year;
+    echo '</div>';
+
     // TODO: month selector
 
     echo '<div class="month-selector">';
