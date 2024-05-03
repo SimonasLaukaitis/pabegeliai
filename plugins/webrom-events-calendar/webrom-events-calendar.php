@@ -210,7 +210,7 @@ function renderCalendar($ajax_month, $ajax_year)
         __('Gruodis', 'webrom-theme'),
     );
 
-    echo '<div class="subtitle1 header-calendar">' . __('Renginių kalendorius', 'webrom-theme') . '</div>';
+   
 
     // Display the dropdown menu for month and year
     echo '<div id="calendar-dropdowns">';
@@ -555,7 +555,7 @@ function renderPosts($ajax_date = '')
 
             //Event time
             echo '<div class="events-time-cont">';
-            echo '<div class="events-time-icon"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/location.svg"></div>';
+            echo '<div class="events-time-icon"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/clock.png"></div>';
             echo '<div class="caption3">' . $event_time . '</div>';
             echo '</div>';
 
@@ -566,7 +566,7 @@ function renderPosts($ajax_date = '')
 
                 // Event location
                 echo '<div class="events-location">';
-                echo '<div class="events-location-icon"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/location.svg"></div>';
+                echo '<div class="events-location-icon"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/location.png"></div>';
                 echo '<div class="caption3">' . $event_location . '</div>';
                 echo '</div>';
             }
