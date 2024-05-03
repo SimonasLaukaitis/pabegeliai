@@ -221,7 +221,13 @@
   margin-left: 7px;
 }
 
+.month-hide{
+  display: none;
+}
 
+.month-selector{
+  display: flex;
+}
 
 .posts-header {
   display: flex;

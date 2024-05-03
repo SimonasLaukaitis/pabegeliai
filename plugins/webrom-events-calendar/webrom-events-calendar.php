@@ -210,26 +210,50 @@ function renderCalendar($ajax_month, $ajax_year)
         __('Gruodis', 'webrom-theme'),
     );
 
-   
+
 
     // Display the dropdown menu for month and year
     echo '<div id="calendar-dropdowns">';
-    echo '<select aria-label="pasirinkti mėnesį" class="calendar-month button3" id="calendar-month">';
+    // echo '<select aria-label="pasirinkti mėnesį" class="calendar-month button3" id="calendar-month">';
 
+    // // Generate month options
+    // for ($i = 1; $i <= 12; $i++) {
+    //     $selected = ($i == $month) ? 'selected="selected"' : '';
+    //     echo '<option value="' . $i . '" ' . $selected . '>' . $month_names[$i - 1] . '</option>';
+    // }
+    // echo '</select>';
+
+    // TODO: month selector
+
+    echo '<div class="month-selector">';
+
+    echo '<button id="month-btn-left"><--</button>';
+
+    echo '<div aria-label="pasirinkti mėnesį" class="calendar-month button3" id="calendar-month">';
+    
     // Generate month options
     for ($i = 1; $i <= 12; $i++) {
-        $selected = ($i == $month) ? 'selected="selected"' : '';
-        echo '<option value="' . $i . '" ' . $selected . '>' . $month_names[$i - 1] . '</option>';
-    }
-    echo '</select>';
 
-    echo '<select aria-label="pasirinkti metus" class="calendar-year button3" id="calendar-year">';
-    // Generate year options
-    for ($i = $year - 10; $i <= $year + 10; $i++) {
-        $selected = ($i == $year) ? 'selected="selected"' : '';
-        echo '<option value="' . $i . '" ' . $selected . '>' . $i . '</option>';
+        if ($i == $month) {
+            echo '<div class="current-month"  value="' . $i . '">' . $month_names[$i - 1] . '</div>';
+        }
+        echo '<div class="month-hide"  value="' . $i . '">' . $month_names[$i - 1] . '</div>';
     }
-    echo '</select>';
+
+    echo '</div>';
+
+    echo '<button id="month-btn-right">--></button>';
+    echo '</div>';
+
+
+
+    // echo '<select aria-label="pasirinkti metus" class="calendar-year button3" id="calendar-year">';
+    // // Generate year options
+    // for ($i = $year - 10; $i <= $year + 10; $i++) {
+    //     $selected = ($i == $year) ? 'selected="selected"' : '';
+    //     echo '<option value="' . $i . '" ' . $selected . '>' . $i . '</option>';
+    // }
+    // echo '</select>';
 
     echo '</div>';
 
