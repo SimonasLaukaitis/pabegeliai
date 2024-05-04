@@ -73,6 +73,7 @@
     $monthLeft.click(function (e) {
       e.preventDefault(); // Prevent the default behavior of the anchor element
       monthswich("left");
+      changeMonthYear(e);
     });
   }
 
@@ -82,6 +83,7 @@
     $monthRight.click(function (e) {
       e.preventDefault(); // Prevent the default behavior of the anchor element
       monthswich("right");
+      changeMonthYear(e);
     });
   }
 
@@ -112,7 +114,6 @@
 
         //years counting
         currentYear++;
-        console.log(currentYear);
         document.querySelector(".calendar-year").innerHTML = currentYear;
       }
     } else if (direction == "left") {
@@ -143,8 +144,15 @@
   /** Changing year and month ajax function*/
   function changeMonthYear(e) {
     e.preventDefault();
-    var $month = $("#calendar-month").val();
-    var $year = $("#calendar-year").val();
+    // var $month = $("#calendar-month").val();
+    // var $year = $("#calendar-year").val();
+    var $month = $("#calendar-month").find(".current-month").attr("value");
+    var $year = $("#calendar-year").text();
+
+    //Changing to int
+    var $month = parseInt($month, 10);
+    var $year = parseInt($year, 10);
+    console.log($year + " - " + $month);
 
     $.post(
       ajax_object.ajax_url,
@@ -161,11 +169,31 @@
         // Set the value of the div
         myDiv.innerHTML = response;
 
-        /** Changing calendar month and year */
-        calendarMonthChangeEventListener();
-        calendarYearChangeEventListener();
-        /** Event day event listener */
+        // /** Changing calendar month and year */
+        // calendarMonthChangeEventListener();
+        // calendarYearChangeEventListener();
+        // /** Event day event listener */
         calendarEventDayEventListener();
+
+        //month selector left
+        var $monthLeft = $("#month-btn-left");
+        if ($monthLeft.length > 0) {
+          $monthLeft.click(function (e) {
+            e.preventDefault(); // Prevent the default behavior of the anchor element
+            monthswich("left");
+            changeMonthYear(e);
+          });
+        }
+
+        //month selector left
+        var $monthRight = $("#month-btn-right");
+        if ($monthRight.length > 0) {
+          $monthRight.click(function (e) {
+            e.preventDefault(); // Prevent the default behavior of the anchor element
+            monthswich("right");
+            changeMonthYear(e);
+          });
+        }
       }
     );
   }

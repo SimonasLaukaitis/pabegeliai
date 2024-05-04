@@ -234,14 +234,15 @@ function renderCalendar($ajax_month, $ajax_year)
     echo '<button id="month-btn-left"><--</button>';
 
     echo '<div aria-label="pasirinkti mėnesį" class="calendar-month button3" id="calendar-month">';
-    
+
     // Generate month options
     for ($i = 1; $i <= 12; $i++) {
 
         if ($i == $month) {
             echo '<div class="current-month"  value="' . $i . '">' . $month_names[$i - 1] . '</div>';
+        } else {
+            echo '<div class="month-hide"  value="' . $i . '">' . $month_names[$i - 1] . '</div>';
         }
-        echo '<div class="month-hide"  value="' . $i . '">' . $month_names[$i - 1] . '</div>';
     }
 
     echo '</div>';
