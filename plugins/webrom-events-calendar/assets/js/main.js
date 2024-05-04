@@ -152,7 +152,6 @@
     //Changing to int
     var $month = parseInt($month, 10);
     var $year = parseInt($year, 10);
-    console.log($year + " - " + $month);
 
     $.post(
       ajax_object.ajax_url,
@@ -175,6 +174,7 @@
         // /** Event day event listener */
         calendarEventDayEventListener();
 
+        //Readding event listeners
         //month selector left
         var $monthLeft = $("#month-btn-left");
         if ($monthLeft.length > 0) {
@@ -184,7 +184,6 @@
             changeMonthYear(e);
           });
         }
-
         //month selector left
         var $monthRight = $("#month-btn-right");
         if ($monthRight.length > 0) {
