@@ -249,20 +249,7 @@
 
   
 
-  /** Home page Events mobile slider */
-  function showEventsSlider() {
-    var navigationButtonLeft = `<div class="navigation_button left-arrow">
-        <img class="arrow" src="/wp-content/themes/europosHorizontas/assets/icons/arrow_left_white.png" alt="atgal">
-        <img class="arrow" src="/wp-content/themes/europosHorizontas/assets/icons/arrow_left_black.png" alt="atgal">
-    </div>`;
-    var navigationButtonRight = `<div class="navigation_button right-arrow">
-      <img class="arrow" src="/wp-content/themes/europosHorizontas/assets/icons/arrow_right_white.png" alt="kitas">
-      <img class="arrow" src="/wp-content/themes/europosHorizontas/assets/icons/arrow_right_black.png" alt="kitas">
-    </div>`;
-
-   
-  }
-  showEventsSlider();
+ 
 })(jQuery);
 
 /** Show posts based on the screen width */
