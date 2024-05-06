@@ -306,6 +306,7 @@
   line-height: 38px;
   font-weight: bold;
   font-style: normal;
+  color: #000000;
 }
 
 .events-calendar-calendar {
@@ -324,8 +325,7 @@
 }
 
 .week-day {
-  color: var(--grey-color3);
-  line-height: 18px;
+  color: #000000;
 }
 
 .header-date-button {
@@ -453,8 +453,6 @@
   padding: 10px 23px;
   background: #add3ee;
   color: #303030;
-
-  
 }
 
 /** ---------Media screens--------- */
@@ -462,5 +460,24 @@
 @media (max-width: 1160px) {
   .events-calendar-plugin {
     flex-direction: column;
+  }
+
+  .event-box {
+    max-width: 100%;
+  }
+
+  .events-calendar-calendar{
+    width: 100% !important;
+    max-width: fit-content !important;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: auto;
+    padding-right: auto;
+    margin-top: 0;
+  }
+
+  .all-events-div {
+    
+    text-align: center;
   }
 }
