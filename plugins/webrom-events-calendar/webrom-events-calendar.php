@@ -214,14 +214,6 @@ function renderCalendar($ajax_month, $ajax_year)
 
     // Display the dropdown menu for month and year
     echo '<div id="calendar-dropdowns">';
-    // echo '<select aria-label="pasirinkti mėnesį" class="calendar-month button3" id="calendar-month">';
-
-    // // Generate month options
-    // for ($i = 1; $i <= 12; $i++) {
-    //     $selected = ($i == $month) ? 'selected="selected"' : '';
-    //     echo '<option value="' . $i . '" ' . $selected . '>' . $month_names[$i - 1] . '</option>';
-    // }
-    // echo '</select>';
 
     echo '<div aria-label="pasirinkti metus" class="calendar-year button3" id="calendar-year">';
     echo $year;
@@ -681,141 +673,8 @@ function render_Date_Only($ajax_date = '')
 
 /** -------Mobile view------- */
 
-/** Render MOBILE posts meta field */
-function renderMobilePosts($ajax_date = '')
-{
-    $today = date('Y-m-d');
 
-    $args = array(
-        'post_type' => 'webrom_events',
-        'posts_per_page' => -1,
-        'meta_query' => array(
-            array(
-                'key' => 'webrom_event_date',
-                'value' => $today,
-                'compare' => '>=', // Show posts with the 'webrom_event_date' greater than or equal to today
-                'type' => 'DATE',
-            ),
-        ),
-        'orderby' => 'meta_value', // Order by the value of the meta field (date)
-        'meta_key' => 'webrom_event_date', // Use the 'webrom_event_date' meta field for ordering
-        'order' => 'ASC', // Order in ascending order (earliest date first)
-    );
 
-    //Checking if there are upcoming events
-    $args_upcoming = array(
-        'post_type' => 'webrom_events',
-        'posts_per_page' => -1,
-        'meta_query' => array(
-            array(
-                'key' => 'webrom_event_date',
-                'value' => $today,
-                'compare' => '>=',
-                'type' => 'DATE',
-            ),
-        ),
-    );
-
-    $events_upcoming_query = new WP_Query($args_upcoming);
-
-    if ($ajax_date !== '') {
-        $args['meta_query'] = array(
-            array(
-                'key' => 'webrom_event_date',
-                'value' => date('Y-m-d', strtotime($ajax_date)),
-                'compare' => '=',
-                'type' => 'DATE',
-            ),
-        );
-    } else if (!$events_upcoming_query->have_posts()) {
-        //If there are upcoming events querry
-        $args = array(
-            'post_type' => 'webrom_events',
-            'posts_per_page' => -1, // Display posts
-            'meta_query' => array(
-                array(
-                    'key' => 'webrom_event_date',
-                    'value' => $today,
-                    'compare' => '<=',
-                    'type' => 'DATE',
-                ),
-            ),
-            'orderby' => 'meta_value',
-            'meta_key' => 'webrom_event_date',
-            'order' => 'DSC', // Order in descending order
-        );
-    }
-
-    echo '<div class="events-calendar-posts-mobile" id="events-calendar-posts-mobile">';
-
-    $query = new WP_Query($args);
-
-    if ($query->have_posts()) {
-        while ($query->have_posts()) {
-            $query->the_post();
-
-            $image_url = '/wp-content/plugins/webrom-events-calendar/assets/img/placeholder_600_400.png';
-
-            if (has_post_thumbnail()) {
-                $thumbnail_url = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
-                $image_url = $thumbnail_url[0];
-            }
-
-            echo '<div class="mobile-event-box">';
-            echo '<div class="featured-image">';
-            echo '<img src="' . $image_url . '" alt="' . get_the_title() . '">';
-            echo '</div>';
-
-            echo '<div  class="events-header subtitle3"><a href="' . get_permalink() . '" aria-label="' . get_the_title() . '">' . get_the_title() . '</a></div>';
-
-            $event_date = get_post_meta(get_the_ID(), 'webrom_event_date', true);
-            $event_dates[] = date('j', strtotime($event_date));
-
-            echo '<div class="events-date">';
-            echo '<div class="events-date-icon"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/date.svg"></div>';
-            echo '<div class="caption3">' . $event_date . '</div>';
-            echo '</div>';
-
-            $event_location = get_post_meta(get_the_ID(), 'webrom_event_location', true);
-
-            // Check if location exists
-            if ($event_location !== '') {
-
-                echo '<div class="events-location">';
-                echo '<div class="events-location-icon"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/location.svg"></div>';
-                echo '<div class="caption3">' . $event_location . '</div>';
-                echo '</div>';
-            }
-
-            echo '</div>';
-        }
-        wp_reset_postdata();
-    }
-
-    echo '</div>';
-}
-
-/** Show MOBILE posts in main page */
-
-function showMobilePosts()
-{
-    return renderMobilePosts('');
-}
-
-/** MOBILE posts html for AJAX */
-function showMobilePost_ajax()
-{
-    check_ajax_referer('main_nonce', 'security');
-
-    if (isset($_POST['eventDate'])) {
-        $date = sanitize_text_field($_POST['eventDate']);
-        echo renderMobilePosts($date);
-    }
-    wp_die();
-}
-
-add_action('wp_ajax_showMobilePost_ajax', 'showMobilePost_ajax');
-add_action('wp_ajax_nopriv_showMobilePost_ajax', 'showMobilePost_ajax');
 
 /** Show all posts */
 

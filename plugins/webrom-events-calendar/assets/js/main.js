@@ -29,8 +29,8 @@
         chooseEventDay(e, dataItemKey);
         //Choose all events day
         chooseAllEventDay(e, dataItemKey);
-        chooseEventDayShowDate(e, dataItemKey);
-        chooseMobileEventDay(e, dataItemKey);
+      
+       
         handleScreenWidthChange(e);
       });
     }
@@ -168,9 +168,6 @@
         // Set the value of the div
         myDiv.innerHTML = response;
 
-        // /** Changing calendar month and year */
-        // calendarMonthChangeEventListener();
-        // calendarYearChangeEventListener();
         // /** Event day event listener */
         calendarEventDayEventListener();
 
@@ -248,49 +245,9 @@
     );
   }
 
-  /** Choosing MOBILE event day ajax function*/
-  function chooseMobileEventDay(e, dataItemKey) {
-    var $eventDate = dataItemKey;
+  
 
-    $.post(
-      ajax_object.ajax_url,
-      {
-        action: "showMobilePost_ajax",
-        eventDate: $eventDate,
-        security: ajax_object.nonce,
-      },
-      function (response) {
-        // Get a reference to the div element
-        var MyDiv = document.getElementById("events-calendar-posts-mobile");
-
-        // Set the value of the div
-        MyDiv.outerHTML = response;
-
-        showEventsSlider();
-      }
-    );
-  }
-
-  /** Showing event date mobile ajax function*/
-  function chooseEventDayShowDate(e, dataItemKey) {
-    var $eventDate = dataItemKey;
-
-    $.post(
-      ajax_object.ajax_url,
-      {
-        action: "showDate_ajax",
-        eventDate: $eventDate,
-        security: ajax_object.nonce,
-      },
-      function (response) {
-        // Get a reference to the div element
-        var MyDiv = document.getElementById("mobile-date-id");
-
-        // Set the value of the div
-        MyDiv.innerHTML = response;
-      }
-    );
-  }
+  
 
   /** Home page Events mobile slider */
   function showEventsSlider() {

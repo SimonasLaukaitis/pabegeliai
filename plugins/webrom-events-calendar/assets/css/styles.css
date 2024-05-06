@@ -466,7 +466,7 @@
     max-width: 100%;
   }
 
-  .events-calendar-calendar{
+  .events-calendar-calendar {
     width: 100% !important;
     max-width: fit-content !important;
     margin-left: auto;
@@ -477,7 +477,32 @@
   }
 
   .all-events-div {
-    
     text-align: center;
+  }
+}
+
+@media (max-width: 526px) {
+  .featured-image {
+    margin-top: auto;
+    margin-bottom: auto;
+    overflow: hidden;
+    height: 165px;
+    width: 120px !important;
+  }
+}
+
+@media (max-width: 526px) {
+  .posts-header {
+    margin-top: 30px;
+  }
+  .table-div {
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
+  .events-calendar-calendar {
+    width: 100% !important;
+    max-width: 100% !important;
   }
 }
