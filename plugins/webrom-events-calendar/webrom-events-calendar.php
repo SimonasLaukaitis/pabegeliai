@@ -231,7 +231,7 @@ function renderCalendar($ajax_month, $ajax_year)
 
     echo '<div class="month-selector">';
 
-    echo '<button id="month-btn-left"><--</button>';
+    echo '<button id="month-btn-left"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/calendar-arr-l.svg"></button>';
 
     echo '<div aria-label="pasirinkti mėnesį" class="calendar-month button3" id="calendar-month">';
 
@@ -247,18 +247,8 @@ function renderCalendar($ajax_month, $ajax_year)
 
     echo '</div>';
 
-    echo '<button id="month-btn-right">--></button>';
+    echo '<button id="month-btn-right"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/calendar-arr-r.svg"></button>';
     echo '</div>';
-
-
-
-    // echo '<select aria-label="pasirinkti metus" class="calendar-year button3" id="calendar-year">';
-    // // Generate year options
-    // for ($i = $year - 10; $i <= $year + 10; $i++) {
-    //     $selected = ($i == $year) ? 'selected="selected"' : '';
-    //     echo '<option value="' . $i . '" ' . $selected . '>' . $i . '</option>';
-    // }
-    // echo '</select>';
 
     echo '</div>';
 
@@ -581,7 +571,7 @@ function renderPosts($ajax_date = '')
             //Event title
             echo '<div  class="events-header subtitle3"><a href="' . get_permalink() . '" aria-label="' . get_the_title() . '">' . get_the_title() . '</a></div>';
 
-
+            echo '<div class="events-time-location">';
             //Event time
             echo '<div class="events-time-cont">';
             echo '<div class="events-time-icon"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/clock.png"></div>';
@@ -599,7 +589,7 @@ function renderPosts($ajax_date = '')
                 echo '<div class="caption3">' . $event_location . '</div>';
                 echo '</div>';
             }
-
+            echo '</div>';
             echo '</div>';
 
             //Right section

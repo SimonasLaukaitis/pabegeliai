@@ -303,15 +303,7 @@
       <img class="arrow" src="/wp-content/themes/europosHorizontas/assets/icons/arrow_right_black.png" alt="kitas">
     </div>`;
 
-    $("#events-calendar-posts-mobile").slick({
-      infinite: true,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      arrows: true,
-      variableWidth: true,
-      prevArrow: navigationButtonLeft,
-      nextArrow: navigationButtonRight,
-    });
+   
   }
   showEventsSlider();
 })(jQuery);
