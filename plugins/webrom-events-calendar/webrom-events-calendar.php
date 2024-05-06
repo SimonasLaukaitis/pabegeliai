@@ -671,10 +671,6 @@ function render_Date_Only($ajax_date = '')
     }
 }
 
-/** -------Mobile view------- */
-
-
-
 
 /** Show all posts */
 
