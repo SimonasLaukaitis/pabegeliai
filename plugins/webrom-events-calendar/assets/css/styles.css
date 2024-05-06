@@ -489,9 +489,7 @@
     height: 165px;
     width: 120px !important;
   }
-}
 
-@media (max-width: 526px) {
   .posts-header {
     margin-top: 30px;
   }
@@ -504,5 +502,104 @@
   .events-calendar-calendar {
     width: 100% !important;
     max-width: 100% !important;
+  }
+
+  .events-header {
+    margin-top: 20px;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 25px;
+    font-family: "Open Sans", sans-serif;
+    letter-spacing: 0px;
+    color: #202020;
+    margin-bottom: 10px;
+  }
+
+  .events-date div:first-child {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 45px;
+    line-height: 65px;
+    font-family: "Open Sans", sans-serif;
+    letter-spacing: 0px;
+    color: #1e6091;
+  }
+
+  .events-date div:last-child {
+    font-style: normal;
+    font-weight: 600; /* Semi-bold */
+    font-size: 13px;
+    line-height: 19px;
+    font-family: "Open Sans", sans-serif;
+    letter-spacing: 0px;
+    color: #202020; /* Dark gray */
+
+    margin-top: -10px;
+  }
+
+  .events-time-cont,
+  .events-location {
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 19px;
+    font-family: "Open Sans", sans-serif;
+    letter-spacing: 0px;
+    color: #202020;
+
+    margin-bottom: 0;
+    margin-top: auto;
+  }
+
+  .events-time-location{
+    margin-bottom: 13px;
+  }
+}
+
+@media (max-width: 412px) {
+  .calendar-table td,
+  .calendar-table th {
+    padding: 1px;
+  }
+
+  .calendar-cell {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 38px;
+    border: 1px solid #add3ee;
+    border-radius: 7px;
+
+    font-style: normal;
+    font-weight: 600 !important; /* Semi-bold */
+    font-size: 20px !important;
+    line-height: 27px !important;
+    font-family: "Open Sans", sans-serif !important;
+    letter-spacing: 0px;
+    color: #202020; /* Dark gray */
+  }
+
+  .calendar-cell-current-day,
+  .calendar-cell-current-day button,
+  .calendar-cell-event-day,
+  .calendar-cell-event-day button {
+    width: 40px !important;
+    height: 38px !important;
+  }
+
+  .month-selector {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: -10px;
+  }
+
+  .events-calendar-calendar {
+    height: fit-content !important;
+    padding-bottom: 20px;
   }
 }
