@@ -463,7 +463,7 @@ function renderPosts($ajax_date = '')
         echo '<div class="posts-header subtitle1">' . __('Praėję renginiai', 'webrom-theme') . '</div>';
     } else {
         // If no events
-        echo '<div class="posts-header subtitle1">' . __('Artimiausi renginiai', 'webrom-theme') . '</div>';
+        echo '<div class="posts-header subtitle1">' . __('Renginiai', 'webrom-theme') . '</div>';
     }
 
     //If there are events today - display them

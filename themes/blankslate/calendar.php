@@ -56,8 +56,9 @@ $renginiai_query = new WP_Query($args);
 ?>
 <main class="container">
 
-    <section>
+    <section class="events-calendar-section">
 
+        <!-- plugin div -->
         <div class="events-calendar-plugin">
 
             <!-- Posts desktop -->
@@ -73,8 +74,12 @@ $renginiai_query = new WP_Query($args);
 
         </div>
 
+        <div class="all-events-div">
+            <a class="all-events-btn" href=""><?php _e('Visi renginiai', 'webrom-theme'); ?></a>
+        </div>
+
     </section>
-    
+
 </main>
 
 <?php get_footer() ?>
