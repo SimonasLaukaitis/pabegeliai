@@ -52,14 +52,5 @@ function pc_register_scripts()
 }
 add_action('wp_enqueue_scripts', 'pc_register_scripts');
 
-//-------------------------------------------------------
-add_filter('single_template', 'event_calendar_single_template');
 
-function event_calendar_single_template($single_template) {
-    global $post;
-    if ($post->post_type == 'webrom_events') { // Corrected post type
-        $single_template = get_stylesheet_directory() . '/custom-event-template.php'; // Corrected template path
-    }
-    return $single_template;
-}
 

@@ -6,6 +6,8 @@
  */
 get_header();
 
+
+
 while (have_posts()): the_post();
     $month_names = array(
         __('sausio', 'webrom-theme'),
