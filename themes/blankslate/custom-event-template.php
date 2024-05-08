@@ -73,6 +73,10 @@ while (have_posts()) : the_post();
 
 	echo '</div>';
 
+	echo '<div class="mobile-template-featured-image">';
+	echo '<img src="' . $image_url . '" alt="' . get_the_title() . '">';
+	echo '</div>';
+
 	echo '</div>';
 
 	//Content
@@ -88,6 +92,11 @@ while (have_posts()) : the_post();
 
 	echo '<div class="template-featured-image">';
 	echo '<img src="' . $image_url . '" alt="' . get_the_title() . '">';
+	echo '</div>';
+
+	//Back btn
+	echo '<div class="back-btn-div">';
+	echo '<a href="" class="template-back-btn">' . __('Grįžti atgal', 'webrom-theme') . '</a>';
 	echo '</div>';
 
 	echo '</div>';
