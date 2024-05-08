@@ -23,6 +23,15 @@ function wec_register_styles()
         'all'
     );
 
+    // Plugin template styles
+    wp_enqueue_style(
+        'wec-template',
+        plugin_dir_url(__FILE__) . 'assets/css/template.css',
+        array('pc-main'),
+        '1.0',
+        'all'
+    );
+
     // Custom event template for single post styles
     wp_enqueue_style(
         'wec-single-template',
@@ -544,7 +553,7 @@ function renderPosts($ajax_date = '')
             $event_dates[] = date('j', strtotime($event_date));
             $event_location = get_post_meta(get_the_ID(), 'webrom_event_location', true);
 
-            $image_url = '/wp-content/plugins/webrom-events-calendar/assets/img/placeholder_600_400.png';
+            $image_url = '';
 
             echo '<div class="event-box post-' . $post_number . '" id="post-' . $post_number . '">';
             if (has_post_thumbnail()) {
@@ -821,7 +830,7 @@ function renderAllPosts($ajax_date = '')
 
             $post_number++;
 
-            $image_url = '/wp-content/plugins/webrom-events-calendar/assets/img/placeholder_600_400.png';
+            $image_url = '';
 
             if (has_post_thumbnail()) {
                 $thumbnail_url = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
