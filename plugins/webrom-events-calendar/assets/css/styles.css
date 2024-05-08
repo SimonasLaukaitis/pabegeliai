@@ -613,6 +613,7 @@
   margin-left: auto;
   margin-right: auto;
   padding-top: 50px;
+  gap: 20px;
 }
 
 .template-featured-image {
@@ -674,6 +675,8 @@
   font-family: "Open Sans", sans-serif;
   letter-spacing: 0px;
   color: #202020;
+
+  margin-top: -11px;
 }
 
 .template-time .caption3,
@@ -684,6 +687,8 @@
   font-family: "Open Sans", sans-serif;
   letter-spacing: 0px;
   color: #202020;
+
+  margin-left: 13px;
 }
 
 .template-content {
@@ -697,4 +702,22 @@
 
 .template-content a {
   text-decoration: none;
+}
+
+.templatetime-location {
+  margin-left: 33px;
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.template-time-icon img,
+.template-location-icon img{
+  width: auto;
+  height: 18px;
+}
+
+.template-date-time-location{
+  margin-bottom: 23px;
 }
