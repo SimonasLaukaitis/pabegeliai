@@ -73,6 +73,7 @@ while (have_posts()) : the_post();
 
 	echo '</div>';
 
+	//Mobile featured img
 	echo '<div class="mobile-template-featured-image">';
 	echo '<img src="' . $image_url . '" alt="' . get_the_title() . '">';
 	echo '</div>';
