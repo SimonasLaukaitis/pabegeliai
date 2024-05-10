@@ -176,6 +176,7 @@ function renderCalendar($ajax_month, $ajax_year)
         while ($query->have_posts()) {
             $query->the_post();
             if (get_post_status() !== 'draft') {
+                
                 $event_date = get_post_meta(get_the_ID(), 'webrom_event_date', true);
                 $event_dates[date('Y-m-d', strtotime($event_date))] = date('j', strtotime($event_date)); // Store the day of the event in the array
             }
@@ -764,13 +765,13 @@ function renderAllPosts($ajax_date = '')
     // Show day of events
     if ($ajax_date != '') {
         //Event date
-        echo '<div class="posts-header" id="posts-header-id"><span class="subtitle1" >' . $month_names_posts[$month - 1] . ' ' . $day . '&nbspd.&nbsp<span class="week-day subtitle2">' . $weekday_names_posts[$dayOfWeek - 1] . '</span></div>';
+        return '<div class="posts-header" id="posts-header-id"><span class="subtitle1" >' . $month_names_posts[$month - 1] . ' ' . $day . '&nbspd.&nbsp<span class="week-day subtitle2">' . $weekday_names_posts[$dayOfWeek - 1] . '</span></div>';
     } else if (!$events_upcoming_query->have_posts()) {
         //Checking if there are upcoming events, if not show past events
-        echo '<div class="posts-header subtitle1">' . __('Praėję renginiai', 'webrom-theme') . '</div>';
+        return '<div class="posts-header subtitle1">' . __('Praėję renginiai', 'webrom-theme') . '</div>';
     } else {
         //Upcomming events date
-        echo '<div class="posts-header subtitle1">' . __('Artimiausi renginiai', 'webrom-theme') . '</div>';
+        return '<div class="posts-header subtitle1">' . __('Artimiausi renginiai', 'webrom-theme') . '</div>';
     }
 
     $args = array(
