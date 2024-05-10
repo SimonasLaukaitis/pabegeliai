@@ -45,18 +45,12 @@ get_header();
 
 <?php
 
-$args = array(
-    'post_type'      => 'renginiai',
-    'posts_per_page' => 3,  // -1 to fetch all posts
-    'post_status'    => 'publish'
-);
 
-$renginiai_query = new WP_Query($args);
 
 ?>
-<main class="container">
+<div class="container">
 
-    <section class="events-calendar-section">
+    <div class="events-calendar-section">
 
         <!-- plugin div -->
         <div class="events-calendar-plugin">
@@ -78,8 +72,8 @@ $renginiai_query = new WP_Query($args);
             <a class="all-events-btn" href=""><?php _e('Visi renginiai', 'webrom-theme'); ?></a>
         </div>
 
-    </section>
+    </div>
 
-</main>
+</div>
 
 <?php get_footer() ?>

@@ -459,19 +459,21 @@ function renderPosts($ajax_date = '')
 
     $events_upcoming_query = new WP_Query($args_upcoming);
 
+    $html = "";
+
     // Show day of events
     if ($ajax_date != '') {
         //Event date
-        echo '<div class="posts-header" id="posts-header-id"><span class="subtitle1" >' . $month_names_posts[$month - 1] . ' ' . $day . '&nbspd.&nbsp<span class="week-day subtitle2">' . $weekday_names_posts[$dayOfWeek - 1] . '</span></div>';
+        $html .= '<div class="posts-header" id="posts-header-id"><span class="subtitle1" >' . $month_names_posts[$month - 1] . ' ' . $day . '&nbspd.&nbsp<span class="week-day subtitle2">' . $weekday_names_posts[$dayOfWeek - 1] . '</span></div>';
     } else if ($events_today_query->found_posts > 0) {
         //current date
-        echo '<div class="posts-header"><span class="subtitle1" >' . $month_names_posts[$month_current - 1] . ' ' . $day_current . '&nbspd.&nbsp<span class="week-day subtitle2">' . $weekday_names_posts[$dayOfWeek_current - 1] . '</span></div>';
+        $html .=  '<div class="posts-header"><span class="subtitle1" >' . $month_names_posts[$month_current - 1] . ' ' . $day_current . '&nbspd.&nbsp<span class="week-day subtitle2">' . $weekday_names_posts[$dayOfWeek_current - 1] . '</span></div>';
     } else if (!$events_upcoming_query->have_posts()) {
         //Checking if there are upcoming events, if not show past events
-        echo '<div class="posts-header subtitle1">' . __('Praėję renginiai', 'webrom-theme') . '</div>';
+        $html .=  '<div class="posts-header subtitle1">' . __('Praėję renginiai', 'webrom-theme') . '</div>';
     } else {
         // If no events
-        echo '<div class="posts-header subtitle1">' . __('Renginiai', 'webrom-theme') . '</div>';
+        $html .=  '<div class="posts-header subtitle1">' . __('Renginiai', 'webrom-theme') . '</div>';
     }
 
     //If there are events today - display them
@@ -535,7 +537,6 @@ function renderPosts($ajax_date = '')
         );
     }
 
-    $html = "";
 
     $html.= '<div class="events-calendar-posts" id="events-calendar-posts">';
 
@@ -911,3 +912,39 @@ function custom_webrom_events_template($template)
     return $template;
 }
 add_filter('template_include', 'custom_webrom_events_template', 99);
+
+function webromEventCalendar() {
+
+    $args = array(
+        'post_type'      => 'renginiai',
+        'posts_per_page' => 3,  // -1 to fetch all posts
+        'post_status'    => 'publish'
+    );
+    
+    $renginiai_query = new WP_Query($args);
+
+    $html = '<div class="container">';
+    $html .= '<div class="events-calendar-section">';
+    $html .= '<div class="events-calendar-plugin">';
+    
+    // Posts section
+    $html .= '<div class="events-calendar-posts" id="events-calendar-posts">';
+    $html .= showPosts();  // Assuming showPosts() returns HTML as a string
+    $html .= '</div>';
+    
+    // Calendar section
+    $html .= '<div class="events-calendar-calendar" id="events-calendar-calendar">';
+    $html .= showCalendar();  // Assuming showCalendar() returns HTML as a string
+    $html .= '</div>';
+    
+    $html .= '</div>'; // Close events-calendar-plugin
+    $html .= '<div class="all-events-div">';
+    $html .= '<a class="all-events-btn" href="' . esc_url(get_site_url()) . '/events">' . __('Visi renginiai', 'webrom-theme') . '</a>';
+    $html .= '</div>'; // Close all-events-div
+    $html .= '</div>'; // Close events-calendar-section
+    $html .= '</div>'; // Close container
+    
+    return $html;
+}
+add_shortcode('webromEventCalendar', 'webromEventCalendar');
+
