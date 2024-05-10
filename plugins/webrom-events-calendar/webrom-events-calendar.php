@@ -632,6 +632,8 @@ function showDate_ajax()
 
     if (isset($_POST['eventDate'])) {
         $date = sanitize_text_field($_POST['eventDate']);
+
+        //TODO: echo left
         echo render_Date_Only($date);
     }
     wp_die();
@@ -681,14 +683,18 @@ function render_Date_Only($ajax_date = '')
     $day_current = $dateObj_current->format('j');
     $dayOfWeek_current = $dateObj_current->format('N');
 
+    $html = "";
+
     // Show day of events
     if ($ajax_date != '') {
         //Event date
-        echo '<div class="mobile-date-spacing subtitle3" >' . $month_names_posts[$month - 1] . ' ' . $day . '&nbspd.</div><div class="week-day subtitle4">' . $weekday_names_posts[$dayOfWeek - 1] . '</div>';
+        $html.= '<div class="mobile-date-spacing subtitle3" >' . $month_names_posts[$month - 1] . ' ' . $day . '&nbspd.</div><div class="week-day subtitle4">' . $weekday_names_posts[$dayOfWeek - 1] . '</div>';
     } else {
         //current date
-        echo '<div class="mobile-date-spacing subtitle3" >' . $month_names_posts[$month_current - 1] . ' ' . $day_current . '&nbspd.</div><div class="week-day subtitle4">' . $weekday_names_posts[$dayOfWeek_current - 1] . '</div>';
+        $html.=  '<div class="mobile-date-spacing subtitle3" >' . $month_names_posts[$month_current - 1] . ' ' . $day_current . '&nbspd.</div><div class="week-day subtitle4">' . $weekday_names_posts[$dayOfWeek_current - 1] . '</div>';
     }
+
+    return $html;
 }
 
 
@@ -707,6 +713,7 @@ function showAllPost_ajax()
 
     if (isset($_POST['eventDate'])) {
         $date = sanitize_text_field($_POST['eventDate']);
+        // TODO: left echo
         echo renderAllPosts($date);
     }
     wp_die();
