@@ -254,12 +254,12 @@ function renderCalendar($ajax_month, $ajax_year)
 
     $html .=  '</div>';
 
-    $html .=  '<div class="table-div">';
+    $html .=  '<div id="table-plugin" class="table-div">';
 
     $date_posts = $month_names[$month - 1];
 
-    $html .=  '<table class="calendar-table button3">';
-    $html .=  '<tr >';
+    $html .=  '<table id="teble-plugin-table" class="calendar-table button3">';
+    $html .=  '<tr>';
     $html .=  '<th><div class="calendar-cell-th button3">' . __('Pr', 'webrom-theme') . '.</div></th>';
     $html .=  '<th><div class="calendar-cell-th button3">' . __('An', 'webrom-theme') . '.</div></th>';
     $html .=  '<th><div class="calendar-cell-th button3">' . __('Tr', 'webrom-theme') . '.</div></th>';

@@ -198,9 +198,9 @@
 .calendar-table {
   border-collapse: collapse;
 }
-.calendar-table td,
-.calendar-table th {
-  padding: 5px;
+#table-plugin .calendar-table td,
+#table-plugin .calendar-table th {
+  padding: 5px !important;
 }
 
 .event-day-btn:hover {
@@ -316,7 +316,7 @@
   height: 519px !important;
   box-shadow: 0px 3px 6px #00000042;
 }
-.calendar-table {
+#table-plugin .calendar-table {
   width: 100%;
   margin-top: 14px;
 }
@@ -433,7 +433,7 @@
   margin-bottom: 13px;
 }
 
-.table-div {
+#table-plugin.table-div {
   margin-left: 52px;
   margin-right: 52px;
 }
@@ -483,7 +483,7 @@
   }
 
   .events-calendar-calendar,
-  .table-div {
+  #table-plugin.table-div {
     width: 100%;
     max-width: fit-content;
     margin-left: auto;
@@ -522,7 +522,7 @@
   .posts-header {
     margin-top: 30px;
   }
-  .table-div {
+  #table-plugin.table-div {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
@@ -586,10 +586,37 @@
   }
 }
 
+#teble-plugin-table tbody tr th {
+  padding: 5px !important;
+  border: none !important;
+}
+
+#teble-plugin-table tbody tr td {
+  border: none !important;
+  padding: 5px !important;
+}
+
+#teble-plugin-table {
+  width: unset;
+}
+
 @media (max-width: 412px) {
-  .calendar-table td,
-  .calendar-table th {
-    padding: 1px;
+  #teble-plugin-table {
+    width: unset;
+  }
+
+  #teble-plugin-table tbody tr td {
+    border: none !important;
+    padding: 1px !important;
+  }
+
+  #table-plugin .calendar-table td,
+  #table-plugin .calendar-table th {
+    padding: 1px !important;
+  }
+
+  #teble-plugin-table tbody tr th {
+    padding: 1px !important;
   }
 
   .calendar-cell {
