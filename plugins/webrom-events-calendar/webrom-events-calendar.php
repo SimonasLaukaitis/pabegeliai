@@ -220,61 +220,61 @@ function renderCalendar($ajax_month, $ajax_year)
         __('Gruodis', 'webrom-theme'),
     );
 
-
+    $html = "";
 
     // Display the dropdown menu for month and year
-    echo '<div id="calendar-dropdowns">';
+    $html.= '<div id="calendar-dropdowns">';
 
-    echo '<div aria-label="pasirinkti metus" class="calendar-year button3" id="calendar-year">';
-    echo $year;
-    echo '</div>';
+    $html.=  '<div aria-label="pasirinkti metus" class="calendar-year button3" id="calendar-year">';
+    $html.=  $year;
+    $html.=  '</div>';
 
     // TODO: month selector
 
-    echo '<div class="month-selector">';
+    $html.=  '<div class="month-selector">';
 
-    echo '<button id="month-btn-left"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/calendar-arr-l.svg"></button>';
+    $html.=  '<button id="month-btn-left"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/calendar-arr-l.svg"></button>';
 
-    echo '<div aria-label="pasirinkti mėnesį" class="calendar-month button3" id="calendar-month">';
+    $html.=  '<div aria-label="pasirinkti mėnesį" class="calendar-month button3" id="calendar-month">';
 
     // Generate month options
     for ($i = 1; $i <= 12; $i++) {
 
         if ($i == $month) {
-            echo '<div class="current-month"  value="' . $i . '">' . $month_names[$i - 1] . '</div>';
+            $html.=  '<div class="current-month"  value="' . $i . '">' . $month_names[$i - 1] . '</div>';
         } else {
-            echo '<div class="month-hide"  value="' . $i . '">' . $month_names[$i - 1] . '</div>';
+            $html.=  '<div class="month-hide"  value="' . $i . '">' . $month_names[$i - 1] . '</div>';
         }
     }
 
-    echo '</div>';
+    $html.=  '</div>';
 
-    echo '<button id="month-btn-right"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/calendar-arr-r.svg"></button>';
-    echo '</div>';
+    $html.=  '<button id="month-btn-right"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/calendar-arr-r.svg"></button>';
+    $html.=  '</div>';
 
-    echo '</div>';
+    $html.=  '</div>';
 
-    echo '<div class="table-div">';
+    $html.=  '<div class="table-div">';
 
     $date_posts = $month_names[$month - 1];
 
-    echo '<table class="calendar-table button3">';
-    echo '<tr >';
-    echo '<th><div class="calendar-cell-th button3">' . __('Pr', 'webrom-theme') . '.</div></th>';
-    echo '<th><div class="calendar-cell-th button3">' . __('An', 'webrom-theme') . '.</div></th>';
-    echo '<th><div class="calendar-cell-th button3">' . __('Tr', 'webrom-theme') . '.</div></th>';
-    echo '<th><div class="calendar-cell-th button3">' . __('Kt', 'webrom-theme') . '.</div></th>';
-    echo '<th><div class="calendar-cell-th button3">' . __('Pn', 'webrom-theme') . '.</div></th>';
-    echo '<th><div class="calendar-cell-th button3">' . __('Št', 'webrom-theme') . '.</div></th>';
-    echo '<th><div class="calendar-cell-th button3">' . __('Sk', 'webrom-theme') . '.</div></th>';
-    echo '</tr>';
+    $html.=  '<table class="calendar-table button3">';
+    $html.=  '<tr >';
+    $html.=  '<th><div class="calendar-cell-th button3">' . __('Pr', 'webrom-theme') . '.</div></th>';
+    $html.=  '<th><div class="calendar-cell-th button3">' . __('An', 'webrom-theme') . '.</div></th>';
+    $html.=  '<th><div class="calendar-cell-th button3">' . __('Tr', 'webrom-theme') . '.</div></th>';
+    $html.=  '<th><div class="calendar-cell-th button3">' . __('Kt', 'webrom-theme') . '.</div></th>';
+    $html.=  '<th><div class="calendar-cell-th button3">' . __('Pn', 'webrom-theme') . '.</div></th>';
+    $html.=  '<th><div class="calendar-cell-th button3">' . __('Št', 'webrom-theme') . '.</div></th>';
+    $html.=  '<th><div class="calendar-cell-th button3">' . __('Sk', 'webrom-theme') . '.</div></th>';
+    $html.=  '</tr>';
 
     // Start the first week
-    echo '<tr>';
+    $html.=  '<tr>';
 
     // Display blank cells for the days before the first day of the month
     for ($i = 1; $i < $first_day; $i++) {
-        echo '<td class="empty-cell"><div class="calendar-cell-empty-cell"><div></td>';
+        $html.=  '<td class="empty-cell"><div class="calendar-cell-empty-cell"><div></td>';
     }
 
     // Display the days of the month
@@ -286,36 +286,38 @@ function renderCalendar($ajax_month, $ajax_year)
         $event_key = $year . '-' . sprintf('%02d', $month) . '-' . sprintf('%02d', $day);
         if (array_key_exists($event_key, $event_dates)) {
             $class .= ' event-day'; // Add CSS class for event day
-            echo '<td class="' . $class . ' button3"><div class="calendar-cell-current-day button3"><button class="event-day-btn button3"  data-item-key="' . $event_key . '"  aria-label="day ' . $day . '" >' . $day . '</button></div></td>';
+            $html.=  '<td class="' . $class . ' button3"><div class="calendar-cell-current-day button3"><button class="event-day-btn button3"  data-item-key="' . $event_key . '"  aria-label="day ' . $day . '" >' . $day . '</button></div></td>';
         } else {
-            echo '<td class="' . $class . '"><div class="calendar-cell">' . $day . '</div></td>';
+            $html.=  '<td class="' . $class . '"><div class="calendar-cell">' . $day . '</div></td>';
         }
         $day++;
     }
 
-    echo '</tr>';
+    $html.=  '</tr>';
 
     // Display the remaining days of the month
     while ($day <= $days_in_month) {
-        echo '<tr>';
+        $html.=  '<tr>';
         for ($i = 1; $i <= 7 && $day <= $days_in_month; $i++) {
             $class = ($day == date('j') && $month == date('m') && $year == date('Y')) ? 'current-day' : '';
 
             // Check if the current day is in the array of event dates
             $event_key = $year . '-' . sprintf('%02d', $month) . '-' . sprintf('%02d', $day);
             if (array_key_exists($event_key, $event_dates)) {
-                echo '<td class="event-day button3"><div class="calendar-cell-event-day button3"><button class="event-day-btn button3" id="" data-item-key="' . $event_key . '"  aria-label="day ' . $day . '" >' . $day . '</button></div></td>';
+                $html.=  '<td class="event-day button3"><div class="calendar-cell-event-day button3"><button class="event-day-btn button3" id="" data-item-key="' . $event_key . '"  aria-label="day ' . $day . '" >' . $day . '</button></div></td>';
             } else {
-                echo '<td ><div class="calendar-cell ' . $class . '">' . $day . '</div></td>';
+                $html.=  '<td ><div class="calendar-cell ' . $class . '">' . $day . '</div></td>';
             }
 
             $day++;
         }
-        echo '</tr>';
+        $html.=  '</tr>';
     }
 
-    echo '</table>';
-    echo '</div>';
+    $html.=  '</table>';
+    $html.=  '</div>';
+
+    return $html;
 }
 
 /** Show calendar in main page */
@@ -323,6 +325,7 @@ function showCalendar()
 {
     return renderCalendar('', '');
 }
+
 
 /** Calendar html for AJAX */
 function showCalendar_ajax()

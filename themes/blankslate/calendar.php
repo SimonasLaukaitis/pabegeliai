@@ -69,7 +69,7 @@ $renginiai_query = new WP_Query($args);
 
             <!-- Calendar -->
             <div class="events-calendar-calendar" id="events-calendar-calendar">
-                <?php showCalendar(); ?>
+                <?php echo showCalendar(); ?>
             </div>
 
         </div>
