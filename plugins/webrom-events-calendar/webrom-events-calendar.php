@@ -915,14 +915,6 @@ add_filter('template_include', 'custom_webrom_events_template', 99);
 
 function webromEventCalendar() {
 
-    $args = array(
-        'post_type'      => 'renginiai',
-        'posts_per_page' => 3,  // -1 to fetch all posts
-        'post_status'    => 'publish'
-    );
-    
-    $renginiai_query = new WP_Query($args);
-
     $html = '<div class="container">';
     $html .= '<div class="events-calendar-section">';
     $html .= '<div class="events-calendar-plugin">';
