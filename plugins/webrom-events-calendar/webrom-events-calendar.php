@@ -779,16 +779,18 @@ function renderAllPosts($ajax_date = '')
 
     $events_upcoming_query = new WP_Query($args_upcoming);
 
+    $html = "";
+
     // Show day of events
     if ($ajax_date != '') {
         //Event date
-        return '<div class="posts-header" id="posts-header-id"><span class="subtitle1" >' . $month_names_posts[$month - 1] . ' ' . $day . '&nbspd.&nbsp<span class="week-day subtitle2">' . $weekday_names_posts[$dayOfWeek - 1] . '</span></div>';
+        $html .= '<div class="posts-header" id="posts-header-id"><span class="subtitle1" >' . $month_names_posts[$month - 1] . ' ' . $day . '&nbspd.&nbsp<span class="week-day subtitle2">' . $weekday_names_posts[$dayOfWeek - 1] . '</span></div>';
     } else if (!$events_upcoming_query->have_posts()) {
         //Checking if there are upcoming events, if not show past events
-        return '<div class="posts-header subtitle1">' . __('Praėję renginiai', 'webrom-theme') . '</div>';
+        $html .= '<div class="posts-header subtitle1">' . __('Praėję renginiai', 'webrom-theme') . '</div>';
     } else {
         //Upcomming events date
-        return '<div class="posts-header subtitle1">' . __('Artimiausi renginiai', 'webrom-theme') . '</div>';
+        $html .= '<div class="posts-header subtitle1">' . __('Artimiausi renginiai', 'webrom-theme') . '</div>';
     }
 
     $args = array(
@@ -835,7 +837,7 @@ function renderAllPosts($ajax_date = '')
         );
     }
 
-    echo '<div class="events-calendar-posts-All main" id="events-calendar-posts-All">';
+    $html .= '<div class="events-calendar-posts-All main" id="events-calendar-posts-All">';
 
     $query = new WP_Query($args);
 
@@ -855,42 +857,44 @@ function renderAllPosts($ajax_date = '')
                 $image_url = $thumbnail_url[0];
             }
 
-            echo '<div class="event-box post id="post-' . $post_number . '">';
-            echo '<div class="featured-image">';
-            echo '<img src="' . $image_url . '" alt="' . get_the_title() . '">';
-            echo '</div>';
-            echo '<div class="events-header subtitle3"><a href="' . get_permalink() . '" aria-label="' . get_the_title() . '">' . get_the_title() . '</a></div>';
+            $html .= '<div class="event-box post id="post-' . $post_number . '">';
+            $html .= '<div class="featured-image">';
+            $html .= '<img src="' . $image_url . '" alt="' . get_the_title() . '">';
+            $html .= '</div>';
+            $html .= '<div class="events-header subtitle3"><a href="' . get_permalink() . '" aria-label="' . get_the_title() . '">' . get_the_title() . '</a></div>';
 
             $event_date = get_post_meta(get_the_ID(), 'webrom_event_date', true);
             $event_dates[] = date('j', strtotime($event_date));
 
-            echo '<div class="events-date">';
-            echo '<div class="events-date-icon"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/date.svg"></div>';
-            echo '<div class="caption3">' . $event_date . '</div>';
-            echo '</div>';
+            $html .= '<div class="events-date">';
+            $html .= '<div class="events-date-icon"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/date.svg"></div>';
+            $html .= '<div class="caption3">' . $event_date . '</div>';
+            $html .= '</div>';
 
             $event_location = get_post_meta(get_the_ID(), 'webrom_event_location', true);
 
             // Check if location exists
             if ($event_location !== '') {
 
-                echo '<div class="events-location">';
-                echo '<div class="events-location-icon"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/location.svg"></div>';
-                echo '<div class="caption3">' . $event_location . '</div>';
-                echo '</div>';
+                $html .= '<div class="events-location">';
+                $html .= '<div class="events-location-icon"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/location.svg"></div>';
+                $html .= '<div class="caption3">' . $event_location . '</div>';
+                $html .= '</div>';
             }
 
-            echo '</div>';
+            $html .= '</div>';
         }
         wp_reset_postdata();
     }
 
     // Pagination container
-    echo '<div id="pagination">
+    $html .= '<div id="pagination">
         <div id="pages"></div>
     </div>';
 
-    echo '</div>';
+    $html .= '</div>';
+
+    return $html;
 }
 
 // Register the template for webrom_events custom post type
