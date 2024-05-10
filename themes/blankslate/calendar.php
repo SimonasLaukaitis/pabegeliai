@@ -48,7 +48,7 @@ get_header();
 
 
 ?>
-<div class="container">
+<div class="">
 
     <div class="events-calendar-section">
 

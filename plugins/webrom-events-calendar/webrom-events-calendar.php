@@ -18,7 +18,7 @@ function wec_register_styles()
     wp_enqueue_style(
         'wec-main',
         plugin_dir_url(__FILE__) . 'assets/css/styles.css',
-        array('pc-main'),
+        array(),
         '1.0',
         'all'
     );
@@ -27,7 +27,7 @@ function wec_register_styles()
     wp_enqueue_style(
         'wec-template',
         plugin_dir_url(__FILE__) . 'assets/css/template.css',
-        array('pc-main'),
+        array(),
         '1.0',
         'all'
     );
@@ -36,7 +36,7 @@ function wec_register_styles()
     wp_enqueue_style(
         'wec-single-template',
         get_template_directory_uri() . '/assets/css/custom-event-template.css',
-        array('pc-main'),
+        array(),
         '1.0',
         'all'
     );
@@ -176,7 +176,7 @@ function renderCalendar($ajax_month, $ajax_year)
         while ($query->have_posts()) {
             $query->the_post();
             if (get_post_status() !== 'draft') {
-                
+
                 $event_date = get_post_meta(get_the_ID(), 'webrom_event_date', true);
                 $event_dates[date('Y-m-d', strtotime($event_date))] = date('j', strtotime($event_date)); // Store the day of the event in the array
             }
@@ -223,58 +223,58 @@ function renderCalendar($ajax_month, $ajax_year)
     $html = "";
 
     // Display the dropdown menu for month and year
-    $html.= '<div id="calendar-dropdowns">';
+    $html .= '<div id="calendar-dropdowns">';
 
-    $html.=  '<div aria-label="pasirinkti metus" class="calendar-year button3" id="calendar-year">';
-    $html.=  $year;
-    $html.=  '</div>';
+    $html .=  '<div aria-label="pasirinkti metus" class="calendar-year button3" id="calendar-year">';
+    $html .=  $year;
+    $html .=  '</div>';
 
     // TODO: month selector
 
-    $html.=  '<div class="month-selector">';
+    $html .=  '<div class="month-selector">';
 
-    $html.=  '<button id="month-btn-left"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/calendar-arr-l.svg"></button>';
+    $html .=  '<button id="month-btn-left"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/calendar-arr-l.svg"></button>';
 
-    $html.=  '<div aria-label="pasirinkti mėnesį" class="calendar-month button3" id="calendar-month">';
+    $html .=  '<div aria-label="pasirinkti mėnesį" class="calendar-month button3" id="calendar-month">';
 
     // Generate month options
     for ($i = 1; $i <= 12; $i++) {
 
         if ($i == $month) {
-            $html.=  '<div class="current-month"  value="' . $i . '">' . $month_names[$i - 1] . '</div>';
+            $html .=  '<div class="current-month"  value="' . $i . '">' . $month_names[$i - 1] . '</div>';
         } else {
-            $html.=  '<div class="month-hide"  value="' . $i . '">' . $month_names[$i - 1] . '</div>';
+            $html .=  '<div class="month-hide"  value="' . $i . '">' . $month_names[$i - 1] . '</div>';
         }
     }
 
-    $html.=  '</div>';
+    $html .=  '</div>';
 
-    $html.=  '<button id="month-btn-right"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/calendar-arr-r.svg"></button>';
-    $html.=  '</div>';
+    $html .=  '<button id="month-btn-right"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/calendar-arr-r.svg"></button>';
+    $html .=  '</div>';
 
-    $html.=  '</div>';
+    $html .=  '</div>';
 
-    $html.=  '<div class="table-div">';
+    $html .=  '<div class="table-div">';
 
     $date_posts = $month_names[$month - 1];
 
-    $html.=  '<table class="calendar-table button3">';
-    $html.=  '<tr >';
-    $html.=  '<th><div class="calendar-cell-th button3">' . __('Pr', 'webrom-theme') . '.</div></th>';
-    $html.=  '<th><div class="calendar-cell-th button3">' . __('An', 'webrom-theme') . '.</div></th>';
-    $html.=  '<th><div class="calendar-cell-th button3">' . __('Tr', 'webrom-theme') . '.</div></th>';
-    $html.=  '<th><div class="calendar-cell-th button3">' . __('Kt', 'webrom-theme') . '.</div></th>';
-    $html.=  '<th><div class="calendar-cell-th button3">' . __('Pn', 'webrom-theme') . '.</div></th>';
-    $html.=  '<th><div class="calendar-cell-th button3">' . __('Št', 'webrom-theme') . '.</div></th>';
-    $html.=  '<th><div class="calendar-cell-th button3">' . __('Sk', 'webrom-theme') . '.</div></th>';
-    $html.=  '</tr>';
+    $html .=  '<table class="calendar-table button3">';
+    $html .=  '<tr >';
+    $html .=  '<th><div class="calendar-cell-th button3">' . __('Pr', 'webrom-theme') . '.</div></th>';
+    $html .=  '<th><div class="calendar-cell-th button3">' . __('An', 'webrom-theme') . '.</div></th>';
+    $html .=  '<th><div class="calendar-cell-th button3">' . __('Tr', 'webrom-theme') . '.</div></th>';
+    $html .=  '<th><div class="calendar-cell-th button3">' . __('Kt', 'webrom-theme') . '.</div></th>';
+    $html .=  '<th><div class="calendar-cell-th button3">' . __('Pn', 'webrom-theme') . '.</div></th>';
+    $html .=  '<th><div class="calendar-cell-th button3">' . __('Št', 'webrom-theme') . '.</div></th>';
+    $html .=  '<th><div class="calendar-cell-th button3">' . __('Sk', 'webrom-theme') . '.</div></th>';
+    $html .=  '</tr>';
 
     // Start the first week
-    $html.=  '<tr>';
+    $html .=  '<tr>';
 
     // Display blank cells for the days before the first day of the month
     for ($i = 1; $i < $first_day; $i++) {
-        $html.=  '<td class="empty-cell"><div class="calendar-cell-empty-cell"><div></td>';
+        $html .=  '<td class="empty-cell"><div class="calendar-cell-empty-cell"><div></td>';
     }
 
     // Display the days of the month
@@ -286,36 +286,36 @@ function renderCalendar($ajax_month, $ajax_year)
         $event_key = $year . '-' . sprintf('%02d', $month) . '-' . sprintf('%02d', $day);
         if (array_key_exists($event_key, $event_dates)) {
             $class .= ' event-day'; // Add CSS class for event day
-            $html.=  '<td class="' . $class . ' button3"><div class="calendar-cell-current-day button3"><button class="event-day-btn button3"  data-item-key="' . $event_key . '"  aria-label="day ' . $day . '" >' . $day . '</button></div></td>';
+            $html .=  '<td class="' . $class . ' button3"><div class="calendar-cell-current-day button3"><button class="event-day-btn button3"  data-item-key="' . $event_key . '"  aria-label="day ' . $day . '" >' . $day . '</button></div></td>';
         } else {
-            $html.=  '<td class="' . $class . '"><div class="calendar-cell">' . $day . '</div></td>';
+            $html .=  '<td class="' . $class . '"><div class="calendar-cell">' . $day . '</div></td>';
         }
         $day++;
     }
 
-    $html.=  '</tr>';
+    $html .=  '</tr>';
 
     // Display the remaining days of the month
     while ($day <= $days_in_month) {
-        $html.=  '<tr>';
+        $html .=  '<tr>';
         for ($i = 1; $i <= 7 && $day <= $days_in_month; $i++) {
             $class = ($day == date('j') && $month == date('m') && $year == date('Y')) ? 'current-day' : '';
 
             // Check if the current day is in the array of event dates
             $event_key = $year . '-' . sprintf('%02d', $month) . '-' . sprintf('%02d', $day);
             if (array_key_exists($event_key, $event_dates)) {
-                $html.=  '<td class="event-day button3"><div class="calendar-cell-event-day button3"><button class="event-day-btn button3" id="" data-item-key="' . $event_key . '"  aria-label="day ' . $day . '" >' . $day . '</button></div></td>';
+                $html .=  '<td class="event-day button3"><div class="calendar-cell-event-day button3"><button class="event-day-btn button3" id="" data-item-key="' . $event_key . '"  aria-label="day ' . $day . '" >' . $day . '</button></div></td>';
             } else {
-                $html.=  '<td ><div class="calendar-cell ' . $class . '">' . $day . '</div></td>';
+                $html .=  '<td ><div class="calendar-cell ' . $class . '">' . $day . '</div></td>';
             }
 
             $day++;
         }
-        $html.=  '</tr>';
+        $html .=  '</tr>';
     }
 
-    $html.=  '</table>';
-    $html.=  '</div>';
+    $html .=  '</table>';
+    $html .=  '</div>';
 
     return $html;
 }
@@ -538,7 +538,7 @@ function renderPosts($ajax_date = '')
     }
 
 
-    $html.= '<div class="events-calendar-posts" id="events-calendar-posts">';
+    $html .= '<div class="events-calendar-posts" id="events-calendar-posts">';
 
     $query = new WP_Query($args);
 
@@ -565,29 +565,29 @@ function renderPosts($ajax_date = '')
 
             $image_url = '';
 
-            $html.= '<div class="event-box post-' . $post_number . '" id="post-' . $post_number . '">';
+            $html .= '<div class="event-box post-' . $post_number . '" id="post-' . $post_number . '">';
             if (has_post_thumbnail()) {
                 $thumbnail_url = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
                 $image_url = $thumbnail_url[0];
             }
 
             //Left section
-            $html.= '<div class="featured-image">';
-            $html.= '<img src="' . $image_url . '" alt="' . get_the_title() . '">';
-            $html.= '</div>';
+            $html .= '<div class="featured-image">';
+            $html .= '<img src="' . $image_url . '" alt="' . get_the_title() . '">';
+            $html .= '</div>';
 
             //Middle section
-            $html.= '<div class="middle-section">';
+            $html .= '<div class="middle-section">';
 
             //Event title
-            $html.= '<div  class="events-header subtitle3"><a href="' . get_permalink() . '" aria-label="' . get_the_title() . '">' . get_the_title() . '</a></div>';
+            $html .= '<div  class="events-header subtitle3"><a href="' . get_permalink() . '" aria-label="' . get_the_title() . '">' . get_the_title() . '</a></div>';
 
-            $html.= '<div class="events-time-location">';
+            $html .= '<div class="events-time-location">';
             //Event time
-            $html.= '<div class="events-time-cont">';
-            $html.= '<div class="events-time-icon"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/clock.png"></div>';
-            $html.= '<div class="caption3">' . $event_time . '</div>';
-            $html.= '</div>';
+            $html .= '<div class="events-time-cont">';
+            $html .= '<div class="events-time-icon"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/clock.png"></div>';
+            $html .= '<div class="caption3">' . $event_time . '</div>';
+            $html .= '</div>';
 
 
 
@@ -595,28 +595,28 @@ function renderPosts($ajax_date = '')
             if ($event_location !== '') {
 
                 // Event location
-                $html.= '<div class="events-location">';
-                $html.= '<div class="events-location-icon"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/location.png"></div>';
-                $html.= '<div class="caption3">' . $event_location . '</div>';
-                $html.= '</div>';
+                $html .= '<div class="events-location">';
+                $html .= '<div class="events-location-icon"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/location.png"></div>';
+                $html .= '<div class="caption3">' . $event_location . '</div>';
+                $html .= '</div>';
             }
-            $html.= '</div>';
-            $html.= '</div>';
+            $html .= '</div>';
+            $html .= '</div>';
 
             //Right section
 
-            $html.= '<div class="events-date">';
-            $html.= '<div class="caption3">' . $event_day . '</div>';
-            $html.= '<div class="caption3">' . $event_month . '</div>';
-            $html.= '</div>';
+            $html .= '<div class="events-date">';
+            $html .= '<div class="caption3">' . $event_day . '</div>';
+            $html .= '<div class="caption3">' . $event_month . '</div>';
+            $html .= '</div>';
 
             //Closing box
-            $html.= '</div>';
+            $html .= '</div>';
         }
         wp_reset_postdata();
     }
 
-    $html.= '</div>';
+    $html .= '</div>';
 
     return $html;
 }
@@ -689,10 +689,10 @@ function render_Date_Only($ajax_date = '')
     // Show day of events
     if ($ajax_date != '') {
         //Event date
-        $html.= '<div class="mobile-date-spacing subtitle3" >' . $month_names_posts[$month - 1] . ' ' . $day . '&nbspd.</div><div class="week-day subtitle4">' . $weekday_names_posts[$dayOfWeek - 1] . '</div>';
+        $html .= '<div class="mobile-date-spacing subtitle3" >' . $month_names_posts[$month - 1] . ' ' . $day . '&nbspd.</div><div class="week-day subtitle4">' . $weekday_names_posts[$dayOfWeek - 1] . '</div>';
     } else {
         //current date
-        $html.=  '<div class="mobile-date-spacing subtitle3" >' . $month_names_posts[$month_current - 1] . ' ' . $day_current . '&nbspd.</div><div class="week-day subtitle4">' . $weekday_names_posts[$dayOfWeek_current - 1] . '</div>';
+        $html .=  '<div class="mobile-date-spacing subtitle3" >' . $month_names_posts[$month_current - 1] . ' ' . $day_current . '&nbspd.</div><div class="week-day subtitle4">' . $weekday_names_posts[$dayOfWeek_current - 1] . '</div>';
     }
 
     return $html;
@@ -913,30 +913,30 @@ function custom_webrom_events_template($template)
 }
 add_filter('template_include', 'custom_webrom_events_template', 99);
 
-function webromEventCalendar() {
+function webromEventCalendar()
+{
 
-    $html = '<div class="container">';
+    $html = "";
     $html .= '<div class="events-calendar-section">';
     $html .= '<div class="events-calendar-plugin">';
-    
+
     // Posts section
     $html .= '<div class="events-calendar-posts" id="events-calendar-posts">';
     $html .= showPosts();  // Assuming showPosts() returns HTML as a string
     $html .= '</div>';
-    
+
     // Calendar section
     $html .= '<div class="events-calendar-calendar" id="events-calendar-calendar">';
     $html .= showCalendar();  // Assuming showCalendar() returns HTML as a string
     $html .= '</div>';
-    
+
     $html .= '</div>'; // Close events-calendar-plugin
     $html .= '<div class="all-events-div">';
     $html .= '<a class="all-events-btn" href="' . esc_url(get_site_url()) . '/events">' . __('Visi renginiai', 'webrom-theme') . '</a>';
     $html .= '</div>'; // Close all-events-div
     $html .= '</div>'; // Close events-calendar-section
-    $html .= '</div>'; // Close container
-    
+
+
     return $html;
 }
 add_shortcode('webromEventCalendar', 'webromEventCalendar');
-
