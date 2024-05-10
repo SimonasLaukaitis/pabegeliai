@@ -63,7 +63,7 @@ $renginiai_query = new WP_Query($args);
 
             <!-- Posts desktop -->
             <div class="events-calendar-posts" id="events-calendar-posts">
-                <?php showPosts(); ?>
+                <?php echo showPosts(); ?>
             </div>
 
 

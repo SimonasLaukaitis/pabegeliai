@@ -162,6 +162,8 @@
         security: ajax_object.nonce,
       },
       function (response) {
+
+        console.log(response)
         // Get a reference to the div element
         var myDiv = document.getElementById("events-calendar-calendar");
 

@@ -334,6 +334,8 @@ function showCalendar_ajax()
     if (isset($_POST['calendarMonth'])) {
         $month = sanitize_text_field($_POST['calendarMonth']);
         $year = sanitize_text_field($_POST['calendarYear']);
+
+        // TODO: echo left
         echo renderCalendar($month, $year);
     }
     wp_die();
@@ -355,6 +357,7 @@ function showPost_ajax()
 
     if (isset($_POST['eventDate'])) {
         $date = sanitize_text_field($_POST['eventDate']);
+        // TODO: echo left
         echo renderPosts($date);
     }
     wp_die();
@@ -532,7 +535,9 @@ function renderPosts($ajax_date = '')
         );
     }
 
-    echo '<div class="events-calendar-posts" id="events-calendar-posts">';
+    $html = "";
+
+    $html.= '<div class="events-calendar-posts" id="events-calendar-posts">';
 
     $query = new WP_Query($args);
 
@@ -559,29 +564,29 @@ function renderPosts($ajax_date = '')
 
             $image_url = '';
 
-            echo '<div class="event-box post-' . $post_number . '" id="post-' . $post_number . '">';
+            $html.= '<div class="event-box post-' . $post_number . '" id="post-' . $post_number . '">';
             if (has_post_thumbnail()) {
                 $thumbnail_url = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
                 $image_url = $thumbnail_url[0];
             }
 
             //Left section
-            echo '<div class="featured-image">';
-            echo '<img src="' . $image_url . '" alt="' . get_the_title() . '">';
-            echo '</div>';
+            $html.= '<div class="featured-image">';
+            $html.= '<img src="' . $image_url . '" alt="' . get_the_title() . '">';
+            $html.= '</div>';
 
             //Middle section
-            echo '<div class="middle-section">';
+            $html.= '<div class="middle-section">';
 
             //Event title
-            echo '<div  class="events-header subtitle3"><a href="' . get_permalink() . '" aria-label="' . get_the_title() . '">' . get_the_title() . '</a></div>';
+            $html.= '<div  class="events-header subtitle3"><a href="' . get_permalink() . '" aria-label="' . get_the_title() . '">' . get_the_title() . '</a></div>';
 
-            echo '<div class="events-time-location">';
+            $html.= '<div class="events-time-location">';
             //Event time
-            echo '<div class="events-time-cont">';
-            echo '<div class="events-time-icon"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/clock.png"></div>';
-            echo '<div class="caption3">' . $event_time . '</div>';
-            echo '</div>';
+            $html.= '<div class="events-time-cont">';
+            $html.= '<div class="events-time-icon"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/clock.png"></div>';
+            $html.= '<div class="caption3">' . $event_time . '</div>';
+            $html.= '</div>';
 
 
 
@@ -589,28 +594,30 @@ function renderPosts($ajax_date = '')
             if ($event_location !== '') {
 
                 // Event location
-                echo '<div class="events-location">';
-                echo '<div class="events-location-icon"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/location.png"></div>';
-                echo '<div class="caption3">' . $event_location . '</div>';
-                echo '</div>';
+                $html.= '<div class="events-location">';
+                $html.= '<div class="events-location-icon"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/location.png"></div>';
+                $html.= '<div class="caption3">' . $event_location . '</div>';
+                $html.= '</div>';
             }
-            echo '</div>';
-            echo '</div>';
+            $html.= '</div>';
+            $html.= '</div>';
 
             //Right section
 
-            echo '<div class="events-date">';
-            echo '<div class="caption3">' . $event_day . '</div>';
-            echo '<div class="caption3">' . $event_month . '</div>';
-            echo '</div>';
+            $html.= '<div class="events-date">';
+            $html.= '<div class="caption3">' . $event_day . '</div>';
+            $html.= '<div class="caption3">' . $event_month . '</div>';
+            $html.= '</div>';
 
             //Closing box
-            echo '</div>';
+            $html.= '</div>';
         }
         wp_reset_postdata();
     }
 
-    echo '</div>';
+    $html.= '</div>';
+
+    return $html;
 }
 
 function showDate()
