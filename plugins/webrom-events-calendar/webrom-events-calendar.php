@@ -956,7 +956,7 @@ function webromEventCalendar()
 {
 
     $html = "";
-    $html .= '<div class="events-calendar-section">';
+    $html .= '<div class="events-calendar-section no-pagination">';
     $html .= '<div class="events-calendar-plugin">';
 
     // Posts section

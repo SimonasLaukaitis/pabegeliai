@@ -37,11 +37,10 @@
 .event-box {
   box-shadow: 0px 3px 6px #00000042;
   width: 100%;
-  
+
   margin-bottom: 12px;
   padding: 0;
   display: flex !important;
-  
 }
 
 .events-price,
@@ -463,11 +462,23 @@
   transition: 0.3s ease;
 }
 
-.all-events-div a:hover{
+.all-events-div a:hover {
   background-color: #b6c8d5;
 }
 
+.no-pagination .events-calendar-plugin .events-calendar-posts .pagination {
+  display: none !important;
+}
 
+
+.no-pagination .events-calendar-plugin .events-calendar-posts .event-box{
+  display: none !important;
+}
+
+/* display only first three childs */
+.no-pagination .events-calendar-plugin .events-calendar-posts .event-box:nth-child(-n+3){
+  display:flex !important;
+} 
 
 /** ---------Media screens--------- */
 
@@ -680,13 +691,10 @@
     color: #202020; /* Dark gray */
   }
 
-  
   .calendar-cell-current-day,
   .calendar-cell-current-day button,
   .calendar-cell-event-day,
   .calendar-cell-event-day button {
-   
-
     width: 34px;
     height: 32px;
     font-style: normal;
