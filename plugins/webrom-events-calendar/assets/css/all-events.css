@@ -4,7 +4,8 @@
 
  #events-calendar-posts{
     height: 100% !important; 
-    min-height: 519px !important;
+    min-height: 590px !important;
+    justify-content: space-between;
  }
 
 .pagination-style {
