@@ -566,6 +566,7 @@ function renderPosts($ajax_date = '')
             $image_url = '';
 
             $html .= '<div class="event-box post-' . $post_number . '" id="post-' . $post_number . '">';
+
             if (has_post_thumbnail()) {
                 $thumbnail_url = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
                 $image_url = $thumbnail_url[0];
@@ -573,7 +574,11 @@ function renderPosts($ajax_date = '')
 
             //Left section
             $html .= '<div class="featured-image">';
-            $html .= '<img src="' . $image_url . '" alt="' . get_the_title() . '">';
+            //Desktop image
+            if ($image_url != "") {
+                $html .= '<img src="' . $image_url . '" alt="' . get_the_title() . '">';
+            }
+
             $html .= '</div>';
 
             //Middle section
@@ -866,8 +871,13 @@ function renderAllPosts($ajax_date = '')
             }
 
             $html .= '<div class="event-box post id="post-' . $post_number . '">';
+
             $html .= '<div class="featured-image">';
-            $html .= '<img src="' . $image_url . '" alt="' . get_the_title() . '">';
+
+            if ($image_url != null) {
+                $html .= '<img src="' . $image_url . '" alt="' . get_the_title() . '">';
+            }
+
             $html .= '</div>';
             $html .= '<div class="events-header subtitle3"><a href="' . get_permalink() . '" aria-label="' . get_the_title() . '">' . get_the_title() . '</a></div>';
 
