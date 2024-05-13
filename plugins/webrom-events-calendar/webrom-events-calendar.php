@@ -470,7 +470,7 @@ function renderPosts($ajax_date = '')
         $html .=  '<div class="posts-header"><span class="subtitle1" >' . $month_names_posts[$month_current - 1] . ' ' . $day_current . '&nbspd.&nbsp<span class="week-day subtitle2">' . $weekday_names_posts[$dayOfWeek_current - 1] . '</span></div>';
     } else if (!$events_upcoming_query->have_posts()) {
         //Checking if there are upcoming events, if not show past events
-        $html .=  '<div class="posts-header subtitle1">' . __('Praėję renginiai', 'webrom-theme') . '</div>';
+        $html .=  '<div class="posts-header subtitle1">' . __('Renginiai', 'webrom-theme') . '</div>';
     } else {
         // If no events
         $html .=  '<div class="posts-header subtitle1">' . __('Renginiai', 'webrom-theme') . '</div>';
@@ -614,6 +614,13 @@ function renderPosts($ajax_date = '')
             $html .= '</div>';
         }
         wp_reset_postdata();
+    } else {
+        $html .= '<span class="event-box no-posts">';
+        $html .=  '<p>' . __('Šią dieną renginių nėra', 'webrom-theme') . '</p>';
+        $html .=  '<p>' . __('Jei turi idėjų ir minčių, kokius renginius galėtume suorganizuoti drauge, kviečiame prisidėti prie Pabėgėlių priėmimo centro renginių įgyvendinimo.', 'webrom-theme') . '</p>';
+        $html .= '<p>' . __('Susidomėjus kreiptis', 'webrom-theme') . ' : <a href="tel:+37068497274">+370 684 97274</a> ' . __('arba', 'webrom-theme') . ' <a href="mailto:lina.gedmine@rppc.lt">lina.gedmine@rppc.lt</a></p>';
+
+        $html .= '</span>';
     }
 
     $html .= '</div>';
@@ -922,7 +929,10 @@ function webromEventCalendar()
 
     // Posts section
     $html .= '<div class="events-calendar-posts" id="events-calendar-posts">';
-    $html .= showPosts();  // Assuming showPosts() returns HTML as a string
+
+    // Todo: nera postu
+    $html .= showPosts();
+
     $html .= '</div>';
 
     // Calendar section

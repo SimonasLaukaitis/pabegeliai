@@ -600,6 +600,27 @@
   width: unset;
 }
 
+.no-posts {
+  box-shadow: none;
+  flex-direction: column;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+  font-family: "Open Sans", sans-serif;
+  letter-spacing: 0px;
+  color: #000000;
+}
+
+.no-posts p:first-child {
+  margin-bottom: 30px;
+}
+.no-posts p a:first-child{
+  text-decoration: none;
+}
+.no-posts p a{
+  color: #000000;
+}
+
 @media (max-width: 412px) {
   #teble-plugin-table {
     width: unset;
