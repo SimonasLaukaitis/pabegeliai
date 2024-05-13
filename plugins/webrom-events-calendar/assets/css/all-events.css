@@ -5,6 +5,9 @@
 #events-calendar-posts {
   height: 100% !important;
   min-height: 590px !important;
+}
+
+.all-events-page #events-calendar-posts {
   justify-content: space-between;
 }
 
@@ -85,5 +88,9 @@
   #events-calendar-posts {
     height: fit-content !important;
     min-height: unset !important;
+  }
+
+  .pagination-style {
+    max-width: 100%;
   }
 }
