@@ -19,16 +19,25 @@ function wec_register_styles()
         'wec-main',
         plugin_dir_url(__FILE__) . 'assets/css/styles.css',
         array(),
-        '1.0',
+        '1.1',
         'all'
     );
 
     // Plugin template styles
     wp_enqueue_style(
         'wec-template',
+        plugin_dir_url(__FILE__) . 'assets/css/all-events.css',
+        array(),
+        '1.1',
+        'all'
+    );
+
+    // All events styles
+    wp_enqueue_style(
+        'wec-all-events',
         plugin_dir_url(__FILE__) . 'assets/css/template.css',
         array(),
-        '1.0',
+        '1.1',
         'all'
     );
 
@@ -37,9 +46,11 @@ function wec_register_styles()
         'wec-single-template',
         get_template_directory_uri() . '/assets/css/custom-event-template.css',
         array(),
-        '1.0',
+        '1.1',
         'all'
     );
+
+    
 }
 add_action('wp_enqueue_scripts', 'wec_register_styles');
 
@@ -51,7 +62,7 @@ function wec_register_scripts()
         'wec-main',
         plugin_dir_url(__FILE__) . 'assets/js/main.js',
         array('jquery'),
-        '1.0',
+        '1.1',
         true
     );
 
@@ -870,11 +881,12 @@ function renderAllPosts($ajax_date = '')
                 $image_url = $thumbnail_url[0];
             }
 
-            $html .= '<div class="event-box post id="post-' . $post_number . '">';
+            $html .= '<div  class="event-box post id="post-' . $post_number . '">';
 
             $html .= '<div class="featured-image">';
 
-            if ($image_url != null) {
+            //Desktop image
+            if ($image_url != "") {
                 $html .= '<img src="' . $image_url . '" alt="' . get_the_title() . '">';
             }
 
@@ -952,7 +964,7 @@ function webromEventCalendar()
 
     $html .= '</div>'; // Close events-calendar-plugin
     $html .= '<div class="all-events-div">';
-    $html .= '<a class="all-events-btn" href="' . esc_url(get_site_url()) . '/events">' . __('Visi renginiai', 'webrom-theme') . '</a>';
+    $html .= '<a class="all-events-btn" href="' . esc_url(get_site_url()) . '/renginiai">' . __('Visi renginiai', 'webrom-theme') . '</a>';
     $html .= '</div>'; // Close all-events-div
     $html .= '</div>'; // Close events-calendar-section
 
@@ -960,3 +972,34 @@ function webromEventCalendar()
     return $html;
 }
 add_shortcode('webromEventCalendar', 'webromEventCalendar');
+
+function allEventsWithCalendar()
+{
+
+    $html = "";
+    $html .= '<div class="events-calendar-section ">';
+    $html .= '<div class="events-calendar-plugin all-events-page">';
+
+    // Posts section
+    $html .= '<div class="events-calendar-posts" id="events-calendar-posts">';
+
+    // Todo: nera postu
+    $html .= showPosts();
+
+    $html .= '</div>';
+
+    // Calendar section
+    $html .= '<div class="events-calendar-calendar" id="events-calendar-calendar">';
+    $html .= showCalendar();  // Assuming showCalendar() returns HTML as a string
+    $html .= '</div>';
+
+    $html .= '</div>'; // Close events-calendar-plugin
+    $html .= '<div class="all-events-div">';
+    $html .= '<a class="all-events-btn" href="' . esc_url(get_site_url()) . '/">' . __('Atgal', 'webrom-theme') . '</a>';
+    $html .= '</div>'; // Close all-events-div
+    $html .= '</div>'; // Close events-calendar-section
+
+
+    return $html;
+}
+add_shortcode('allEventsWithCalendar', 'allEventsWithCalendar');
