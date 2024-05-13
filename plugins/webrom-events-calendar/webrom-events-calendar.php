@@ -380,6 +380,8 @@ add_action('wp_ajax_nopriv_showPost_ajax', 'showPost_ajax');
 /** Render posts meta field */
 function renderPosts($ajax_date = '')
 {
+    global $paged;
+
     $month_names_posts = array(
         __('Sausio', 'webrom-theme'),
         __('Vasario', 'webrom-theme'),
@@ -405,27 +407,28 @@ function renderPosts($ajax_date = '')
         __('Sekmadienis', 'webrom-theme'),
     );
 
-    // event date
+    // Event date
     $dateObj = new DateTime($ajax_date);
     $month = $dateObj->format('n');
     $day = $dateObj->format('j');
     $dayOfWeek = $dateObj->format('N');
 
-    // curent date
+    // Current date
     $dateObj_current = new DateTime();
     $month_current = $dateObj_current->format('n');
     $day_current = $dateObj_current->format('j');
     $dayOfWeek_current = $dateObj_current->format('N');
 
-    //How much posts will be dispayed
-    $displayPostCount = 3;
+    // How much posts will be displayed
+    $posts_per_page = 6;
 
-    //show events aligned by day if no events today
+    // Show events aligned by day if no events today
     $today = date('Y-m-d');
 
     $args = array(
         'post_type' => 'webrom_events',
-        'posts_per_page' => $displayPostCount,
+        'posts_per_page' => $posts_per_page,
+        'paged' => $paged,
         'meta_query' => array(
             array(
                 'key' => 'webrom_event_date',
@@ -439,10 +442,10 @@ function renderPosts($ajax_date = '')
         'order' => 'ASC', // Order in ascending order (earliest date first)
     );
 
-    //Check if there is events today
+    // Check if there are events today
     $args_today = array(
         'post_type' => 'webrom_events',
-        'posts_per_page' => $displayPostCount,
+        'posts_per_page' => $posts_per_page,
         'meta_query' => array(
             array(
                 'key' => 'webrom_event_date',
@@ -454,10 +457,10 @@ function renderPosts($ajax_date = '')
     );
     $events_today_query = new WP_Query($args_today);
 
-    //Checking if there are upcoming events
+    // Checking if there are upcoming events
     $args_upcoming = array(
         'post_type' => 'webrom_events',
-        'posts_per_page' => $displayPostCount,
+        'posts_per_page' => $posts_per_page,
         'meta_query' => array(
             array(
                 'key' => 'webrom_event_date',
@@ -474,24 +477,25 @@ function renderPosts($ajax_date = '')
 
     // Show day of events
     if ($ajax_date != '') {
-        //Event date
+        // Event date
         $html .= '<div class="posts-header" id="posts-header-id"><span class="subtitle1" >' . $month_names_posts[$month - 1] . ' ' . $day . '&nbspd.&nbsp<span class="week-day subtitle2">' . $weekday_names_posts[$dayOfWeek - 1] . '</span></div>';
     } else if ($events_today_query->found_posts > 0) {
-        //current date
+        // Current date
         $html .=  '<div class="posts-header"><span class="subtitle1" >' . $month_names_posts[$month_current - 1] . ' ' . $day_current . '&nbspd.&nbsp<span class="week-day subtitle2">' . $weekday_names_posts[$dayOfWeek_current - 1] . '</span></div>';
     } else if (!$events_upcoming_query->have_posts()) {
-        //Checking if there are upcoming events, if not show past events
+        // Checking if there are upcoming events, if not show past events
         $html .=  '<div class="posts-header subtitle1">' . __('RENGINIAI', 'webrom-theme') . '</div>';
     } else {
         // If no events
         $html .=  '<div class="posts-header subtitle1">' . __('RENGINIAI', 'webrom-theme') . '</div>';
     }
 
-    //If there are events today - display them
+    // If there are events today - display them
     if ($events_today_query->found_posts > 0) {
         $args = array(
             'post_type' => 'webrom_events',
-            'posts_per_page' => $displayPostCount,
+            'posts_per_page' => $posts_per_page,
+            'paged' => $paged,
             'meta_query' => array(
                 array(
                     'key' => 'webrom_event_date',
@@ -507,7 +511,8 @@ function renderPosts($ajax_date = '')
     } else if (!$events_upcoming_query->have_posts()) {
         $args = array(
             'post_type' => 'webrom_events',
-            'posts_per_page' => $displayPostCount, // Display posts
+            'posts_per_page' => $posts_per_page, // Display posts
+            'paged' => $paged,
             'meta_query' => array(
                 array(
                     'key' => 'webrom_event_date',
@@ -522,10 +527,11 @@ function renderPosts($ajax_date = '')
         );
     }
     if ($ajax_date !== '') {
-        //Show specific date events if calendar day is clicked
+        // Show specific date events if calendar day is clicked
         $args = array(
             'post_type' => 'webrom_events',
-            'posts_per_page' => $displayPostCount,
+            'posts_per_page' => $posts_per_page,
+            'paged' => $paged,
             'meta_query' => array(
                 array(
                     'key' => 'webrom_event_date',
@@ -548,15 +554,12 @@ function renderPosts($ajax_date = '')
         );
     }
 
-
     $html .= '<div class="events-calendar-posts" id="events-calendar-posts">';
 
     $query = new WP_Query($args);
 
     // variable for post id number
     $post_number = 0;
-
-
 
     if ($query->have_posts()) {
         while ($query->have_posts()) {
@@ -583,29 +586,27 @@ function renderPosts($ajax_date = '')
                 $image_url = $thumbnail_url[0];
             }
 
-            //Left section
+            // Left section
             $html .= '<div class="featured-image">';
-            //Desktop image
+            // Desktop image
             if ($image_url != "") {
                 $html .= '<img src="' . $image_url . '" alt="' . get_the_title() . '">';
             }
 
             $html .= '</div>';
 
-            //Middle section
+            // Middle section
             $html .= '<div class="middle-section">';
 
-            //Event title
+            // Event title
             $html .= '<div  class="events-header subtitle3"><a href="' . get_permalink() . '" aria-label="' . get_the_title() . '">' . get_the_title() . '</a></div>';
 
             $html .= '<div class="events-time-location">';
-            //Event time
+            // Event time
             $html .= '<div class="events-time-cont">';
             $html .= '<div class="events-time-icon"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/clock.png"></div>';
             $html .= '<div class="caption3">' . $event_time . '</div>';
             $html .= '</div>';
-
-
 
             // Check if location exists
             if ($event_location !== '') {
@@ -619,17 +620,25 @@ function renderPosts($ajax_date = '')
             $html .= '</div>';
             $html .= '</div>';
 
-            //Right section
+            // Right section
 
             $html .= '<div class="events-date">';
             $html .= '<div class="caption3">' . $event_day . '</div>';
             $html .= '<div class="caption3">' . $event_month . '</div>';
             $html .= '</div>';
 
-            //Closing box
+            // Closing box
             $html .= '</div>';
         }
         wp_reset_postdata();
+
+        // Pagination
+        $html .= '<div class="pagination">';
+        $html .= paginate_links(array(
+            'total' => $query->max_num_pages,
+            'current' => max(1, $paged),
+        ));
+        $html .= '</div>';
     } else {
         $html .= '<span class="event-box no-posts">';
         $html .=  '<p>' . __('Šią dieną renginių nėra', 'webrom-theme') . '</p>';
@@ -643,6 +652,7 @@ function renderPosts($ajax_date = '')
 
     return $html;
 }
+
 
 function showDate()
 {
