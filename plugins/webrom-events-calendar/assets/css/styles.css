@@ -614,14 +614,14 @@
 .no-posts p:first-child {
   margin-bottom: 30px;
 }
-.no-posts p a:first-child{
+.no-posts p a:first-child {
   text-decoration: none;
 }
-.no-posts p a{
+.no-posts p a {
   color: #000000;
 }
 
-@media (max-width: 412px) {
+@media (max-width: 500px) {
   #teble-plugin-table {
     width: unset;
   }
@@ -645,26 +645,48 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 38px;
+    width: 34px;
+    height: 32px;
     border: 1px solid #add3ee;
     border-radius: 7px;
 
     font-style: normal;
     font-weight: 600 !important; /* Semi-bold */
-    font-size: 20px !important;
-    line-height: 27px !important;
+    font-size: 15px !important;
+    line-height: 22px !important;
     font-family: "Open Sans", sans-serif !important;
     letter-spacing: 0px;
     color: #202020; /* Dark gray */
   }
 
+  .calendar-cell-th {
+    width: 34px;
+    height: 32px;
+    font-style: normal;
+    font-weight: 600 !important; /* Semi-bold */
+    font-size: 15px !important;
+    line-height: 22px !important;
+    font-family: "Open Sans", sans-serif !important;
+    letter-spacing: 0px;
+    color: #202020; /* Dark gray */
+  }
+
+  
   .calendar-cell-current-day,
   .calendar-cell-current-day button,
   .calendar-cell-event-day,
   .calendar-cell-event-day button {
-    width: 40px !important;
-    height: 38px !important;
+   
+
+    width: 34px;
+    height: 32px;
+    font-style: normal;
+    font-weight: 600 !important; /* Semi-bold */
+    font-size: 15px !important;
+    line-height: 22px !important;
+    font-family: "Open Sans", sans-serif !important;
+    letter-spacing: 0px;
+    color: #202020; /* Dark gray */
   }
 
   .month-selector {
