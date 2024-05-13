@@ -2,8 +2,92 @@
   flex-direction: row-reverse;
 }
 
+ #events-calendar-posts{
+    height: 100% !important; 
+    min-height: 519px !important;
+ }
+
+.pagination-style {
+  margin-top: 68px;
+  text-align: center;
+  width: 100%;
+
+  padding-right: 130px;
+  padding-left: 130px;
+  z-index: 1;
+  flex-wrap: wrap;
+  
+  
+}
+
+.pagination-style .page-numbers {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  font-family: Arial;
+  letter-spacing: 4px;
+  color: #303030;
+
+  text-decoration: none !important;
+}
+
+.pagination-style .prev {
+    margin-right:4px;
+  width: 7px !important;
+  height: 12px !important;
+  color: transparent;
+  background: url("../icons/left-pagination.png") no-repeat;
+  background-size: contain;
+  text-indent: -9999px; /* Move the text off-screen */
+  overflow: hidden; /* Hide any overflow */
+  display: inline-block; /* Ensures width and height properties are respected */
+}
+
+.pagination-style .next {
+    margin-left:4px;
+  width: 9px !important;
+  height: 12px !important;
+  color: transparent;
+  background: url("../icons/right-pagination.png") no-repeat;
+  background-size: contain;
+  text-indent: -9999px; /* Move the text off-screen */
+  overflow: hidden; /* Hide any overflow */
+  display: inline-block; /* Ensures width and height properties are respected */
+}
+
+.pagination-style .current {
+  color: #1e6091;
+}
+
+.back-to-events-container{
+    margin-top: -20px;
+}
+
 @media (max-width: 1160px) {
   .all-events-page {
     flex-direction: column-reverse;
   }
+
+  .back-to-events-container{
+    margin-top: 0px;
+}
+
+.pagination-style {
+    margin-top: 48px;
+    margin-bottom: 48px;
+    text-align: center;
+    width: 100%;
+  
+    padding-right: 0px;
+    padding-left: 0px;
+    z-index: 1;
+    
+    
+  }
+
+  #events-calendar-posts{
+    height: fit-content !important; 
+    min-height: unset !important;
+ }
 }

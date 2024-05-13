@@ -633,7 +633,7 @@ function renderPosts($ajax_date = '')
         wp_reset_postdata();
 
         // Pagination
-        $html .= '<div class="pagination">';
+        $html .= '<div class="pagination pagination-style">';
         $html .= paginate_links(array(
             'total' => $query->max_num_pages,
             'current' => max(1, $paged),
@@ -1004,8 +1004,8 @@ function allEventsWithCalendar()
     $html .= '</div>';
 
     $html .= '</div>'; // Close events-calendar-plugin
-    $html .= '<div class="all-events-div">';
-    $html .= '<a class="all-events-btn" href="' . esc_url(get_site_url()) . '/">' . __('Atgal', 'webrom-theme') . '</a>';
+    $html .= '<div class="all-events-div back-to-events-container">';
+    $html .= '<a class="all-events-btn" href="' . esc_url(get_site_url()) . '/">' . __('Grįžti atgal', 'webrom-theme') . '</a>';
     $html .= '</div>'; // Close all-events-div
     $html .= '</div>'; // Close events-calendar-section
 
