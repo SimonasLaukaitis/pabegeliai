@@ -127,6 +127,14 @@
   font-size: 14px;
   line-height: 19px;
   font-family: "Open Sans", sans-serif;
+  color: rgb(48, 48, 48);
+
+  transition: 0.3s ease;
+}
+
+.template-back-btn:hover{
+  background-color: #b6c8d5 !important;
+  cursor: pointer;
 }
 
 .back-btn-div {

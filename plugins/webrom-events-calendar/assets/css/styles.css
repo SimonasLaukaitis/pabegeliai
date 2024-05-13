@@ -150,7 +150,7 @@
   color: #202020; /* Dark gray */
 }
 
-.calendar-cell:hover {
+.calendar-cell:hover{
   background-color: #b6c8d5 !important;
   cursor: pointer;
 }

@@ -97,7 +97,7 @@ while (have_posts()) : the_post();
 
 	//Back btn
 	echo '<div class="back-btn-div">';
-	echo '<a href="" class="template-back-btn">' . __('Grįžti atgal', 'webrom-theme') . '</a>';
+	echo '<a href="' . esc_url(get_site_url()) . '/renginiai" class="template-back-btn">' . __('Grįžti atgal', 'webrom-theme') . '</a>';
 	echo '</div>';
 
 	echo '</div>';
