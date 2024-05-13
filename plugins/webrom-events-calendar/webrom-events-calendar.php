@@ -481,10 +481,10 @@ function renderPosts($ajax_date = '')
         $html .=  '<div class="posts-header"><span class="subtitle1" >' . $month_names_posts[$month_current - 1] . ' ' . $day_current . '&nbspd.&nbsp<span class="week-day subtitle2">' . $weekday_names_posts[$dayOfWeek_current - 1] . '</span></div>';
     } else if (!$events_upcoming_query->have_posts()) {
         //Checking if there are upcoming events, if not show past events
-        $html .=  '<div class="posts-header subtitle1">' . __('Renginiai', 'webrom-theme') . '</div>';
+        $html .=  '<div class="posts-header subtitle1">' . __('RENGINIAI', 'webrom-theme') . '</div>';
     } else {
         // If no events
-        $html .=  '<div class="posts-header subtitle1">' . __('Renginiai', 'webrom-theme') . '</div>';
+        $html .=  '<div class="posts-header subtitle1">' . __('RENGINIAI', 'webrom-theme') . '</div>';
     }
 
     //If there are events today - display them
