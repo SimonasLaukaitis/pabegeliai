@@ -37,7 +37,7 @@
 .event-box {
   box-shadow: 0px 3px 6px #00000042;
   width: 100%;
-  max-width: 670px;
+  
   margin-bottom: 12px;
   padding: 0;
   display: flex !important;
@@ -466,6 +466,8 @@
 .all-events-div a:hover{
   background-color: #b6c8d5;
 }
+
+
 
 /** ---------Media screens--------- */
 

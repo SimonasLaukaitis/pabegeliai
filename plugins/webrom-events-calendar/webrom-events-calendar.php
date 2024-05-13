@@ -418,7 +418,7 @@ function renderPosts($ajax_date = '')
     $dayOfWeek_current = $dateObj_current->format('N');
 
     //How much posts will be dispayed
-    $displayPostCount = 6;
+    $displayPostCount = 3;
 
     //show events aligned by day if no events today
     $today = date('Y-m-d');

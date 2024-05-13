@@ -1,4 +1,9 @@
-.all-events-page{
-flex-direction:row-reverse
+.all-events-page {
+  flex-direction: row-reverse;
 }
 
+@media (max-width: 1160px) {
+  .all-events-page {
+    flex-direction: column-reverse;
+  }
+}
