@@ -49,8 +49,6 @@ function wec_register_styles()
         '1.2',
         'all'
     );
-
-    
 }
 add_action('wp_enqueue_scripts', 'wec_register_styles');
 
@@ -604,8 +602,10 @@ function renderPosts($ajax_date = '')
             $html .= '<div class="events-time-location">';
             // Event time
             $html .= '<div class="events-time-cont">';
-            $html .= '<div class="events-time-icon"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/clock.png"></div>';
-            $html .= '<div class="caption3">' . $event_time . '</div>';
+            if ($event_time != "") {
+                $html .= '<div class="events-time-icon"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/clock.png"></div>';
+                $html .= '<div class="caption3">' . $event_time . '</div>';
+            }
             $html .= '</div>';
 
             // Check if location exists

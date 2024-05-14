@@ -439,6 +439,8 @@
   margin-right: 52px;
 }
 
+
+
 .all-events-div {
   width: 100%;
   max-width: 1200px;
@@ -495,6 +497,7 @@
 
 #teble-plugin-table {
   width: unset;
+  border: none !important;
 }
 
 .no-posts {
