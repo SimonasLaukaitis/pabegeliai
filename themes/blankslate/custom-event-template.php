@@ -56,7 +56,7 @@ while (have_posts()) : the_post();
 	echo '<div class="templatetime-location">';
 
 	// Check if date exists
-	if ($event_date !== '') {
+	if ($event_time !== '') {
 		echo '<div class="template-time">';
 		echo '<div class="template-time-icon"><img src="/wp-content/plugins/webrom-events-calendar/assets/icons/clock.png"></div>';
 		echo '<div class="caption3">' . $event_time . '</div>';
@@ -74,9 +74,11 @@ while (have_posts()) : the_post();
 	echo '</div>';
 
 	//Mobile featured img
-	echo '<div class="mobile-template-featured-image">';
-	echo '<img src="' . $image_url . '" alt="' . get_the_title() . '">';
-	echo '</div>';
+	if ($image_url != "") {
+		echo '<div class="mobile-template-featured-image">';
+		echo '<img src="' . $image_url . '" alt="' . get_the_title() . '">';
+		echo '</div>';
+	}
 
 	echo '</div>';
 
@@ -91,9 +93,12 @@ while (have_posts()) : the_post();
 	//Righter screen
 	echo '<div class="right-screen">';
 
-	echo '<div class="template-featured-image">';
-	echo '<img src="' . $image_url . '" alt="' . get_the_title() . '">';
-	echo '</div>';
+	if ($image_url != "") {
+		echo '<div class="template-featured-image">';
+		echo '<img src="' . $image_url . '" alt="' . get_the_title() . '">';
+		echo '</div>';
+	}
+
 
 	//Back btn
 	echo '<div class="back-btn-div">';
