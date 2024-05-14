@@ -150,7 +150,7 @@
   color: #202020; /* Dark gray */
 }
 
-.calendar-cell:hover{
+.calendar-cell:hover {
   background-color: #b6c8d5 !important;
   cursor: pointer;
 }
@@ -471,37 +471,59 @@
   display: none !important;
 }
 
-
-.no-pagination .events-calendar-plugin .events-calendar-posts .event-box{
+.no-pagination .events-calendar-plugin .events-calendar-posts .event-box {
   display: none !important;
 }
 
 /* display only first three childs */
-.no-pagination .events-calendar-plugin .events-calendar-posts .event-box:nth-child(-n+3){
-  display:flex !important;
-} 
+.no-pagination
+  .events-calendar-plugin
+  .events-calendar-posts
+  .event-box:nth-child(-n + 3) {
+  display: flex !important;
+}
+
+#teble-plugin-table tbody tr th {
+  padding: 5px !important;
+  border: none !important;
+}
+
+#teble-plugin-table tbody tr td {
+  border: none !important;
+  padding: 5px !important;
+}
+
+#teble-plugin-table {
+  width: unset;
+}
+
+.no-posts {
+  box-shadow: none;
+  flex-direction: column;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+  font-family: "Open Sans", sans-serif;
+  letter-spacing: 0px;
+  color: #000000;
+
+  margin-bottom: 50px;
+}
+
+.no-posts p:first-child {
+  margin-bottom: 30px;
+}
+.no-posts p a:first-child {
+  text-decoration: none;
+}
+.no-posts p a {
+  color: #000000;
+}
 
 /** ---------Media screens--------- */
 
 @media (max-width: 1160px) {
-  .events-calendar-plugin {
-    flex-direction: column;
-  }
 
-  .event-box {
-    max-width: 100%;
-  }
-
-  .events-calendar-calendar {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: auto;
-    padding-right: auto;
-    margin-top: 0;
-    box-shadow: 0px 3px 6px #00000042;
-  }
 
   .events-calendar-calendar,
   #table-plugin.table-div {
@@ -605,44 +627,66 @@
   .events-time-location {
     margin-bottom: 13px;
   }
+
+  .events-calendar-plugin {
+    flex-direction: column;
+  }
+
+  .event-box {
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .featured-image:nth-child(1) {
+    order: 1;
+  }
+
+  .middle-section:nth-child(2) {
+    order: 2;
+    margin-bottom: 30px;
+    
+    width: 60%;
+  }
+
+  .events-date:nth-child(3) {
+    order: 3;
+    width: 50px;
+    padding-top: 10px;
+  }
+
+  
+
+  .featured-image {
+    width: 100% !important; /* Set the width of the container */
+    height: 200px; /* Set the height of the container */
+    overflow: hidden; /* Hide any overflow from the image */
+    position: relative; /* Establish positioning context */
+    flex-shrink: unset;
+  }
+  
+  .featured-image img {
+    width: 100%; /* Ensure the image covers the entire container horizontally */
+    height: 100%; /* Ensure the image covers the entire container vertically */
+    object-fit: cover; /* Scale the image as large as possible while maintaining aspect ratio */
+    object-position: center; /* Center the image within the container */
+    position: absolute; /* Position the image relative to its container */
+    top: 0; /* Position from the top of the container */
+    left: 0; /* Position from the left of the container */
+  }
+
+  .events-calendar-calendar {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: auto;
+    padding-right: auto;
+    margin-top: 0;
+    box-shadow: 0px 3px 6px #00000042;
+  }
 }
 
-#teble-plugin-table tbody tr th {
-  padding: 5px !important;
-  border: none !important;
-}
 
-#teble-plugin-table tbody tr td {
-  border: none !important;
-  padding: 5px !important;
-}
-
-#teble-plugin-table {
-  width: unset;
-}
-
-.no-posts {
-  box-shadow: none;
-  flex-direction: column;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 19px;
-  font-family: "Open Sans", sans-serif;
-  letter-spacing: 0px;
-  color: #000000;
-
-  margin-bottom: 50px;
-}
-
-.no-posts p:first-child {
-  margin-bottom: 30px;
-}
-.no-posts p a:first-child {
-  text-decoration: none;
-}
-.no-posts p a {
-  color: #000000;
-}
 
 @media (max-width: 500px) {
   #teble-plugin-table {
@@ -720,5 +764,15 @@
   .events-calendar-calendar {
     height: fit-content !important;
     padding-bottom: 20px;
+  }
+}
+
+
+@media (max-width: 500px) {
+  .middle-section:nth-child(2) {
+    order: 2;
+    margin-bottom: 30px;
+    
+    width: 50%;
   }
 }
