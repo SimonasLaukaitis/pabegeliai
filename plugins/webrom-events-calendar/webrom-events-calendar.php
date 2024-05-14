@@ -1004,9 +1004,9 @@ function allEventsWithCalendar()
     $html .= '</div>';
 
     $html .= '</div>'; // Close events-calendar-plugin
-    $html .= '<div class="all-events-div back-to-events-container">';
-    $html .= '<a class="all-events-btn" href="' . esc_url(get_site_url()) . '/">' . __('Grįžti atgal', 'webrom-theme') . '</a>';
-    $html .= '</div>'; // Close all-events-div
+    // $html .= '<div class="all-events-div back-to-events-container">';
+    // $html .= '<a class="all-events-btn" href="' . esc_url(get_site_url()) . '/">' . __('Grįžti atgal', 'webrom-theme') . '</a>';
+    // $html .= '</div>'; // Close all-events-div
     $html .= '</div>'; // Close events-calendar-section
 
 
