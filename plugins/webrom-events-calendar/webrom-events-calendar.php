@@ -19,7 +19,7 @@ function wec_register_styles()
         'wec-main',
         plugin_dir_url(__FILE__) . 'assets/css/styles.css',
         array(),
-        '1.3',
+        '1.4',
         'all'
     );
 
@@ -28,7 +28,7 @@ function wec_register_styles()
         'wec-template',
         plugin_dir_url(__FILE__) . 'assets/css/all-events.css',
         array(),
-        '1.3',
+        '1.4',
         'all'
     );
 
@@ -37,7 +37,7 @@ function wec_register_styles()
         'wec-all-events',
         plugin_dir_url(__FILE__) . 'assets/css/template.css',
         array(),
-        '1.3',
+        '1.4',
         'all'
     );
 
@@ -46,7 +46,7 @@ function wec_register_styles()
         'wec-single-template',
         get_template_directory_uri() . '/assets/css/custom-event-template.css',
         array(),
-        '1.3',
+        '1.4',
         'all'
     );
 }
@@ -60,7 +60,7 @@ function wec_register_scripts()
         'wec-main',
         plugin_dir_url(__FILE__) . 'assets/js/main.js',
         array('jquery'),
-        '1.3',
+        '1.4',
         true
     );
 
