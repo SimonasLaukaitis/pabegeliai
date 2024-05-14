@@ -112,6 +112,7 @@
 .template-location-icon img {
   width: auto;
   height: 18px;
+  flex-shrink: 0;
 }
 
 .template-date-time-location {

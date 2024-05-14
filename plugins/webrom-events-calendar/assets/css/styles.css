@@ -410,6 +410,7 @@
 .events-time-icon,
 .events-location-icon {
   margin-right: 9px;
+  flex-shrink: 0;
 }
 
 .events-time-cont,
