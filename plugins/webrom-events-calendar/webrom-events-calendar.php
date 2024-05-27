@@ -515,7 +515,7 @@ function renderPosts($ajax_date = '')
                 array(
                     'key' => 'webrom_event_date',
                     'value' => $today,
-                    'compare' => '<=',
+                    'compare' => '>=',
                     'type' => 'DATE',
                 ),
             ),
@@ -641,7 +641,7 @@ function renderPosts($ajax_date = '')
         $html .= '</div>';
     } else {
         $html .= '<span class="event-box no-posts">';
-        $html .=  '<p>' . __('Šią dieną renginių nėra', 'webrom-theme') . '</p>';
+        $html .=  '<p>' . __('Šią dieną renginių nėra', 'webrom-theme') . '.</p>';
         $html .=  '<p>' . __('Jei turi idėjų ir minčių, kokius renginius galėtume suorganizuoti drauge, kviečiame prisidėti prie Pabėgėlių priėmimo centro renginių įgyvendinimo.', 'webrom-theme') . '</p>';
         $html .= '<p>' . __('Susidomėjus kreiptis', 'webrom-theme') . ' : <a href="tel:+37068497274">+370 684 97274</a> ' . __('arba', 'webrom-theme') . ' <a href="mailto:lina.gedmine@rppc.lt">lina.gedmine@rppc.lt</a></p>';
 
